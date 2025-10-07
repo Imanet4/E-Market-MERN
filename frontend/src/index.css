@@ -1,0 +1,249 @@
+/* Moroccan-inspired CSS Variables */
+:root {
+  --primary: #ed7418;
+  --primary-dark: #b45309;
+  --royal: #3b82f6;
+  --royal-dark: #1e40af;
+  --gold: #fbbf24;
+  --gold-dark: #d97706;
+  --earth: #78716c;
+  --earth-dark: #44403c;
+  --cream: #fef7ee;
+  --light-cream: #fffaf3;
+}
+
+/* Sophisticated Typography */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: var(--earth-dark);
+}
+
+/* Refined Link Hover Effects */
+.elegant-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.4s ease;
+}
+
+.elegant-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, var(--gold), var(--primary));
+  transition: width 0.6s ease; /* Slower animation */
+}
+
+.elegant-link:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.elegant-link:hover::after {
+  width: 100%;
+}
+
+/* Brand link - no hover effects */
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Refined Minimal Buttons */
+.btn-minimal {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 12px 32px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-minimal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-minimal:hover::before {
+  left: 100%;
+}
+
+.btn-minimal:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-minimal-primary {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.btn-minimal-primary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Transparent Header */
+.navbar-transparent {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.navbar-solid {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Sophisticated Card Styles */
+.card-elegant {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.card-elegant:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Styles */
+.icon-elegant {
+  width: 60px;
+  height: 60px;
+  background: rgba(237, 116, 24, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  transition: all 0.3s ease;
+}
+
+.icon-elegant svg {
+  width: 24px;
+  height: 24px;
+  color: var(--primary);
+}
+
+/* Moroccan Pattern Backgrounds */
+.moroccan-pattern-light {
+  background-color: var(--cream);
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(237, 116, 24, 0.03) 0%, transparent 50%);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--royal));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--primary-dark), var(--royal-dark));
+}
+
+/* Dashboard Specific Styles - No transitions */
+.dashboard-card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dashboard-table thead {
+  background-color: #f8f9fa;
+}
+
+/* Remove all transitions from dashboard components */
+.dashboard-container * {
+  transition: none !important;
+}
+
+/* Utility classes for dashboard */
+.border-light-top {
+  border-top: 1px solid #dee2e6;
+}
+
+.bg-light-gray {
+  background-color: #f8f9fa;
+}
+
+/* Ensure dashboard tables are clean */
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Moroccan geometric patterns for main site only */
+.moroccan-pattern {
+  background-color: #fef7ee;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(237, 116, 24, 0.1) 2px, transparent 2px);
+  background-size: 40px 40px;
+}
+
+.tile-border {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, var(--gold), var(--royal), var(--primary)) 1;
+}
