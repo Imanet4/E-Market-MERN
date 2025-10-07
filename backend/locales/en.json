@@ -1,0 +1,91 @@
+{
+  "welcome": "Welcome to Moroccan Cooperatives Marketplace",
+  "auth": {
+    "register": {
+      "success": "Registration successful",
+      "error": "Registration failed"
+    },
+    "login": {
+      "success": "Login successful",
+      "error": "Invalid credentials"
+    },
+    "logout": {
+      "success": "Logged out successfully"
+    }
+  },
+  "products": {
+    "create": {
+      "success": "Product created successfully",
+      "error": "Failed to create product"
+    },
+    "update": {
+      "success": "Product updated successfully",
+      "error": "Failed to update product"
+    },
+    "delete": {
+      "success": "Product deleted successfully",
+      "error": "Failed to delete product"
+    },
+    "not_found": "Product not found",
+    "out_of_stock": "Product is out of stock",
+    "insufficient_stock": "Insufficient stock available"
+  },
+  "orders": {
+    "create": {
+      "success": "Order created successfully",
+      "error": "Failed to create order"
+    },
+    "update": {
+      "success": "Order updated successfully",
+      "error": "Failed to update order"
+    },
+    "not_found": "Order not found",
+    "empty": "Order must contain at least one item"
+  },
+  "cooperatives": {
+    "create": {
+      "success": "Cooperative created successfully",
+      "error": "Failed to create cooperative"
+    },
+    "update": {
+      "success": "Cooperative updated successfully",
+      "error": "Failed to update cooperative"
+    },
+    "delete": {
+      "success": "Cooperative deleted successfully",
+      "error": "Failed to delete cooperative"
+    },
+    "not_found": "Cooperative not found",
+    "verified": "Cooperative verified successfully"
+  },
+  "validation": {
+    "required": "{{field}} is required",
+    "email": "Please provide a valid email",
+    "min_length": "{{field}} must be at least {{min}} characters",
+    "max_length": "{{field}} cannot exceed {{max}} characters",
+    "invalid": "Invalid {{field}}"
+  },
+  "errors": {
+    "unauthorized": "Not authorized",
+    "forbidden": "Access forbidden",
+    "not_found": "Resource not found",
+    "server_error": "Server error occurred",
+    "validation": "Validation failed"
+  },
+  "categories": {
+    "edible-goods": "Edible Goods",
+    "cosmetics": "Cosmetics",
+    "clothing": "Clothing",
+    "accessories": "Accessories",
+    "souvenir-boxes": "Souvenir Boxes"
+  },
+  "order_status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "processing": "Processing",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled",
+    "refunded": "Refunded"
+  }
+}
