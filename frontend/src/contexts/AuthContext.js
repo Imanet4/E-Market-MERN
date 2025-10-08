@@ -39,12 +39,33 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+    const updateDetails = async (userData) => {
+    try {
+      const response = await authAPI.updateProfile(userData);
+      setUser(response.data.data);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const updatePassword = async (passwordData) => {
+    try {
+      const response = await authAPI.updatePassword(passwordData);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const value = {
     user,
     login,
     logout,
     checkAuth,
-    loading
+    loading,
+    updateDetails,
+    updatePassword
   };
 
   return (
