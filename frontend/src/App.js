@@ -7,9 +7,11 @@ import Products from './pages/Products/Products';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
+import { CartProvider } from './contexts/CartContext';
 
 function App() {
   return (
+   <CartProvider> 
     <AuthProvider>
       <Router>
         <Layout>
@@ -23,6 +25,7 @@ function App() {
         </Layout>
       </Router>
     </AuthProvider>
+   </CartProvider> 
   );
 }
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Form, InputGroup, Badge, Pagination, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Form, InputGroup, Badge, Pagination, Alert, Toast } from 'react-bootstrap';
 import { productsAPI } from '../../services/products';
+import { useCart } from '../../contexts/CartContext';
+import { mockProducts } from '../../utils/mockData';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -14,106 +16,10 @@ const Products = () => {
   const [productsPerPage] = useState(12);
   const [alert, setAlert] = useState({ show: false, message: '', type: '' });
   const [usingMockData, setUsingMockData] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastProduct, setToastProduct] = useState(null);
 
-  // Mock data for fallback
-  const mockProducts = [
-    {
-      _id: '1',
-      name: 'Premium Argan Oil',
-      price: 29.99,
-      stock: 45,
-      status: 'active',
-      category: 'cosmetics',
-      description: '100% pure organic argan oil from Souss region. Rich in vitamin E and antioxidants.',
-      images: ['/placeholder.jpg'],
-      cooperative: { 
-        name: 'Souss Women Cooperative',
-        logo: '/placeholder.jpg'
-      },
-      rating: { average: 4.5, count: 156 },
-      createdAt: '2024-01-15'
-    },
-    {
-      _id: '2',
-      name: 'Handwoven Berber Rug',
-      price: 199.99,
-      stock: 8,
-      status: 'active',
-      category: 'clothing',
-      description: 'Traditional Berber rug with authentic geometric patterns. Handcrafted by skilled artisans.',
-      images: ['/placeholder.jpg'],
-      cooperative: { 
-        name: 'Atlas Mountains Weavers',
-        logo: '/placeholder.jpg'
-      },
-      rating: { average: 4.8, count: 23 },
-      createdAt: '2024-01-14'
-    },
-    {
-      _id: '3',
-      name: 'Moroccan Spice Box',
-      price: 39.99,
-      stock: 0,
-      status: 'out-of-stock',
-      category: 'edible-goods',
-      description: 'Curated selection of authentic Moroccan spices including ras el hanout and saffron.',
-      images: ['/placeholder.jpg'],
-      cooperative: { 
-        name: 'Marrakech Spice Masters',
-        logo: '/placeholder.jpg'
-      },
-      rating: { average: 4.6, count: 89 },
-      createdAt: '2024-01-13'
-    },
-    {
-      _id: '4',
-      name: 'Ceramic Tagine Pot',
-      price: 49.99,
-      stock: 25,
-      status: 'active',
-      category: 'accessories',
-      description: 'Traditional clay tagine for authentic Moroccan cooking. Perfect for slow-cooked dishes.',
-      images: ['/placeholder.jpg'],
-      cooperative: { 
-        name: 'Fes Pottery Artisans',
-        logo: '/placeholder.jpg'
-      },
-      rating: { average: 4.7, count: 34 },
-      createdAt: '2024-01-12'
-    },
-    {
-      _id: '5',
-      name: 'Leather Babouche',
-      price: 35.99,
-      stock: 15,
-      status: 'active',
-      category: 'clothing',
-      description: 'Traditional Moroccan leather slippers with intricate embroidery and comfortable fit.',
-      images: ['/placeholder.jpg'],
-      cooperative: { 
-        name: 'Marrakech Leather Crafts',
-        logo: '/placeholder.jpg'
-      },
-      rating: { average: 4.4, count: 67 },
-      createdAt: '2024-01-11'
-    },
-    {
-      _id: '6',
-      name: 'Souvenir Box - Classic',
-      price: 79.99,
-      stock: 12,
-      status: 'active',
-      category: 'souvenir-boxes',
-      description: 'Perfect introduction to Moroccan crafts with assorted traditional items and keepsakes.',
-      images: ['/placeholder.jpg'],
-      cooperative: { 
-        name: 'AtlasMarket Curators',
-        logo: '/placeholder.jpg'
-      },
-      rating: { average: 4.9, count: 45 },
-      createdAt: '2024-01-10'
-    }
-  ];
+  const { addToCart, cartCount, getCartItemCount } = useCart();
 
   const categories = [
     { value: 'all', label: 'All Categories' },
@@ -145,7 +51,7 @@ const Products = () => {
       }
     } catch (error) {
       console.warn('API not available, using mock data:', error);
-      // Fallback to mock data
+      // Fallback to shared mock data
       setProducts(mockProducts);
       setUsingMockData(true);
       showAlert('Displaying sample products', 'info');
@@ -157,6 +63,22 @@ const Products = () => {
   const showAlert = (message, type) => {
     setAlert({ show: true, message, type });
     setTimeout(() => setAlert({ show: false, message: '', type: '' }), 5000);
+  };
+
+  const handleAddToCart = (product) => {
+    if (product.stock === 0) {
+      showAlert('This product is out of stock', 'warning');
+      return;
+    }
+
+    addToCart(product);
+    setToastProduct(product);
+    setShowToast(true);
+    
+    // Auto hide toast after 3 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
   };
 
   const filterAndSortProducts = () => {
@@ -232,79 +154,89 @@ const Products = () => {
     return stars;
   };
 
-  const ProductCard = ({ product }) => (
-    <Col lg={4} md={6} className="mb-4">
-      <Card className="h-100 border-0 shadow-sm product-card">
-        <div className="position-relative">
-          <Card.Img 
-            variant="top"
-            src={`https://via.placeholder.com/300x200/ED7418/FFFFFF?text=${encodeURIComponent(product.name)}`}
-            style={{ height: '200px', objectFit: 'cover' }}
-          />
-          {product.stock === 0 && (
-            <div className="position-absolute top-0 start-0 m-2">
-              <Badge bg="danger">Out of Stock</Badge>
-            </div>
-          )}
-          {product.rating && (
-            <div className="position-absolute top-0 end-0 m-2">
-              <Badge bg="light" text="dark" className="d-flex align-items-center">
-                {renderStars(product.rating.average)}
-                <small className="ms-1">({product.rating.count})</small>
+  const ProductCard = ({ product }) => {
+    const cartQuantity = getCartItemCount(product._id);
+    
+    return (
+      <Col lg={4} md={6} className="mb-4">
+        <Card className="h-100 border-0 shadow-sm product-card">
+          <div className="position-relative">
+            <Card.Img 
+              variant="top"
+              src={`https://via.placeholder.com/300x200/ED7418/FFFFFF?text=${encodeURIComponent(product.name)}`}
+              style={{ height: '200px', objectFit: 'cover' }}
+            />
+            {product.stock === 0 && (
+              <div className="position-absolute top-0 start-0 m-2">
+                <Badge bg="danger">Out of Stock</Badge>
+              </div>
+            )}
+            {product.rating && (
+              <div className="position-absolute top-0 end-0 m-2">
+                <Badge bg="light" text="dark" className="d-flex align-items-center">
+                  {renderStars(product.rating.average)}
+                  <small className="ms-1">({product.rating.count})</small>
+                </Badge>
+              </div>
+            )}
+          </div>
+          
+          <Card.Body className="d-flex flex-column">
+            <div className="mb-2">
+              <Badge 
+                bg="light" 
+                text="dark" 
+                className="text-capitalize mb-2"
+              >
+                {product.category.replace('-', ' ')}
               </Badge>
             </div>
-          )}
-        </div>
-        
-        <Card.Body className="d-flex flex-column">
-          <div className="mb-2">
-            <Badge 
-              bg="light" 
-              text="dark" 
-              className="text-capitalize mb-2"
-            >
-              {product.category.replace('-', ' ')}
-            </Badge>
-          </div>
-          
-          <Card.Title className="h6 mb-2" style={{ color: 'var(--earth-dark)' }}>
-            {product.name}
-          </Card.Title>
-          
-          <Card.Text className="flex-grow-1 small text-muted mb-3">
-            {product.description.length > 100 
-              ? `${product.description.substring(0, 100)}...` 
-              : product.description
-            }
-          </Card.Text>
+            
+            <Card.Title className="h6 mb-2" style={{ color: 'var(--earth-dark)' }}>
+              {product.name}
+            </Card.Title>
+            
+            <Card.Text className="flex-grow-1 small text-muted mb-3">
+              {product.description.length > 100 
+                ? `${product.description.substring(0, 100)}...` 
+                : product.description
+              }
+            </Card.Text>
 
-          <div className="mb-3">
-            <small className="text-muted">
-              By <span style={{ color: 'var(--royal)' }}>{product.cooperative?.name}</span>
-            </small>
-          </div>
-          
-          <div className="d-flex justify-content-between align-items-center mt-auto">
-            <div>
-              <span className="h5 fw-bold mb-0" style={{ color: 'var(--primary)' }}>
-                ${product.price}
-              </span>
+            <div className="mb-3">
+              <small className="text-muted">
+                By <span style={{ color: 'var(--royal)' }}>{product.cooperative?.name}</span>
+              </small>
             </div>
-            <Button 
-              size="sm"
-              style={{ 
-                backgroundColor: 'var(--primary)',
-                borderColor: 'var(--primary)'
-              }}
-              disabled={product.stock === 0}
-            >
-              {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-            </Button>
-          </div>
-        </Card.Body>
-      </Card>
-    </Col>
-  );
+            
+            <div className="d-flex justify-content-between align-items-center mt-auto">
+              <div>
+                <span className="h5 fw-bold mb-0" style={{ color: 'var(--primary)' }}>
+                  ${product.price}
+                </span>
+                {cartQuantity > 0 && (
+                  <small className="d-block text-muted">
+                    In cart: {cartQuantity}
+                  </small>
+                )}
+              </div>
+              <Button 
+                size="sm"
+                style={{ 
+                  backgroundColor: product.stock === 0 ? '#6c757d' : 'var(--primary)',
+                  borderColor: product.stock === 0 ? '#6c757d' : 'var(--primary)'
+                }}
+                disabled={product.stock === 0}
+                onClick={() => handleAddToCart(product)}
+              >
+                {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
+    );
+  };
 
   return (
     <Container className="py-5" style={{ marginTop: '20px' }}>
@@ -313,6 +245,44 @@ const Products = () => {
           {alert.message}
         </Alert>
       )}
+
+      {/* Add to Cart Toast */}
+      <Toast 
+        show={showToast} 
+        onClose={() => setShowToast(false)}
+        style={{
+          position: 'fixed',
+          top: '100px',
+          right: '20px',
+          zIndex: 1050,
+          minWidth: '300px'
+        }}
+      >
+        <Toast.Header>
+          <strong className="me-auto">🎉 Added to Cart!</strong>
+        </Toast.Header>
+        <Toast.Body>
+          {toastProduct && (
+            <div className="d-flex align-items-center">
+              <div 
+                className="rounded me-3"
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  background: 'linear-gradient(135deg, #ed7418 0%, #3b82f6 100%)'
+                }}
+              ></div>
+              <div>
+                <strong>{toastProduct.name}</strong>
+                <div className="text-muted">${toastProduct.price}</div>
+              </div>
+            </div>
+          )}
+          <div className="mt-2">
+            <small>Cart now has {cartCount} items</small>
+          </div>
+        </Toast.Body>
+      </Toast>
 
       {/* Demo Mode Indicator */}
       {usingMockData && (
