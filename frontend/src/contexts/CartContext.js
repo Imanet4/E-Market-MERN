@@ -2,7 +2,13 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const CartContext = createContext();
 
-export const useCart = () => useContext(CartContext);
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,9 +18,14 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const savedCart = localStorage.getItem('atlasmarket_cart');
     if (savedCart) {
-      const parsedCart = JSON.parse(savedCart);
-      setCartItems(parsedCart);
-      updateCartCount(parsedCart);
+      try{
+          const parsedCart = JSON.parse(savedCart);
+          setCartItems(parsedCart);
+          updateCartCount(parsedCart);
+      } catch (error) {
+        console.error('Error parsing cart from localStorage', error);
+        setCartItems([]);
+    }
     }
   }, []);
 
@@ -35,13 +46,24 @@ export const CartProvider = ({ children }) => {
       
       if (existingItem) {
         // Update quantity if item already exists
+        const newQuantity = existingItem.quantity + quantity;
+        if (newQuantity > product.stock) {
+          alert(`Only ${product.stock} items available in stock`);
+          return prevItems;
+        }
+        
         return prevItems.map(item =>
           item._id === product._id
-            ? { ...item, quantity: item.quantity + quantity }
+            ? { ...item, quantity: newQuantity }
             : item
         );
       } else {
         // Add new item to cart
+        if (quantity > product.stock) {
+          alert(`Only ${product.stock} items available in stock`);
+          return prevItems;
+        }
+        
         return [...prevItems, {
           _id: product._id,
           name: product.name,
@@ -62,6 +84,13 @@ export const CartProvider = ({ children }) => {
   const updateQuantity = (productId, newQuantity) => {
     if (newQuantity < 1) {
       removeFromCart(productId);
+      return;
+    }
+
+    // Check stock limit
+    const item = cartItems.find(item => item._id === productId);
+    if (item && newQuantity > item.stock) {
+      alert(`Only ${item.stock} items available in stock`);
       return;
     }
 

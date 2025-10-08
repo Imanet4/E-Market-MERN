@@ -8,6 +8,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { CartProvider } from './contexts/CartContext';
+import Cart from './pages/Cart/Cart';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </Layout>
       </Router>
