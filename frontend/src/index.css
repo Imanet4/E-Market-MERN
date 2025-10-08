@@ -247,3 +247,33 @@ html {
   border: 2px solid;
   border-image: linear-gradient(45deg, var(--gold), var(--royal), var(--primary)) 1;
 }
+
+/* Product card hover effects */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Pagination styles */
+.pagination .page-link {
+  color: var(--primary);
+  border: 1px solid #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.pagination .page-link:hover {
+  color: var(--primary-dark);
+}
+
+/* Badge cursor for filter removal */
+.cursor-pointer {
+  cursor: pointer;
+}

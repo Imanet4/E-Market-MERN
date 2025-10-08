@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Table, Button, Badge, Form, Modal, Alert, Image } from 'react-bootstrap';
+import { productsAPI } from '../../services/products';
 
 const ProductManagement = () => {
   const [products, setProducts] = useState([]);
@@ -9,58 +10,73 @@ const ProductManagement = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ show: false, message: '', type: '' });
   const [productImages, setProductImages] = useState([]);
+  const [usingMockData, setUsingMockData] = useState(false);
+
+  // Mock data for fallback
+  const mockProducts = [
+    {
+      _id: '1',
+      name: 'Premium Argan Oil',
+      price: 29.99,
+      stock: 45,
+      status: 'active',
+      category: 'cosmetics',
+      description: '100% pure organic argan oil from Souss region',
+      images: ['/placeholder.jpg'],
+      salesCount: 156,
+      cooperative: { name: 'Souss Women Cooperative' }
+    },
+    {
+      _id: '2',
+      name: 'Handwoven Berber Rug',
+      price: 199.99,
+      stock: 8,
+      status: 'active',
+      category: 'clothing',
+      description: 'Traditional Berber rug with geometric patterns',
+      images: ['/placeholder.jpg'],
+      salesCount: 23,
+      cooperative: { name: 'Atlas Mountains Weavers' }
+    },
+    {
+      _id: '3',
+      name: 'Moroccan Spice Box',
+      price: 39.99,
+      stock: 0,
+      status: 'out-of-stock',
+      category: 'edible-goods',
+      description: 'Curated selection of authentic Moroccan spices',
+      images: ['/placeholder.jpg'],
+      salesCount: 89,
+      cooperative: { name: 'Marrakech Spice Masters' }
+    }
+  ];
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        // Try to fetch from API first
+        const response = await productsAPI.getAll();
+        if (response.data && response.data.data) {
+          setProducts(response.data.data);
+          setUsingMockData(false);
+        } else {
+          throw new Error('No data received from API');
+        }
+      } catch (error) {
+        console.warn('API not available, using mock data:', error);
+        // Fallback to mock data
+        setProducts(mockProducts);
+        setUsingMockData(true);
+        showAlert('Connected to demo mode with sample data', 'info');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
   }, []);
-
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      // Mock data - replace with actual API call
-      const mockProducts = [
-        {
-          _id: '1',
-          name: 'Premium Argan Oil',
-          price: 29.99,
-          stock: 45,
-          status: 'active',
-          category: 'cosmetics',
-          description: '100% pure organic argan oil from Souss region',
-          images: ['/placeholder.jpg'],
-          salesCount: 156
-        },
-        {
-          _id: '2',
-          name: 'Handwoven Berber Rug',
-          price: 199.99,
-          stock: 8,
-          status: 'active',
-          category: 'clothing',
-          description: 'Traditional Berber rug with geometric patterns',
-          images: ['/placeholder.jpg'],
-          salesCount: 23
-        },
-        {
-          _id: '3',
-          name: 'Moroccan Spice Box',
-          price: 39.99,
-          stock: 0,
-          status: 'out-of-stock',
-          category: 'edible-goods',
-          description: 'Curated selection of authentic Moroccan spices',
-          images: ['/placeholder.jpg'],
-          salesCount: 89
-        }
-      ];
-      setProducts(mockProducts);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      showAlert('Error fetching products', 'danger');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const showAlert = (message, type) => {
     setAlert({ show: true, message, type });
@@ -69,46 +85,106 @@ const ProductManagement = () => {
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
+    setProductImages(product.images || []);
     setShowEditModal(true);
   };
 
   const handleDelete = async (productId) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        // Mock delete - replace with actual API call
+        if (!usingMockData) {
+          // Real API call
+          await productsAPI.delete(productId);
+        }
+        // Update local state (works for both API and mock data)
         setProducts(products.filter(p => p._id !== productId));
         showAlert('Product deleted successfully', 'success');
       } catch (error) {
-        showAlert('Error deleting product', 'danger');
+        console.error('Error deleting product:', error);
+        if (usingMockData) {
+          // For mock data, still delete from local state
+          setProducts(products.filter(p => p._id !== productId));
+          showAlert('Product deleted from demo data', 'success');
+        } else {
+          showAlert('Error deleting product', 'danger');
+        }
       }
     }
   };
 
   const handleSaveProduct = async (productData) => {
     try {
+      let savedProduct;
+
       if (selectedProduct) {
         // Update existing product
+        if (!usingMockData) {
+          const response = await productsAPI.update(selectedProduct._id, {
+            ...productData,
+            images: productImages
+          });
+          savedProduct = response.data.data;
+        } else {
+          // Mock update for demo data
+          savedProduct = {
+            ...selectedProduct,
+            ...productData,
+            images: productImages
+          };
+        }
+        
         setProducts(products.map(p => 
-          p._id === selectedProduct._id ? { ...p, ...productData } : p
+          p._id === selectedProduct._id ? savedProduct : p
         ));
         showAlert('Product updated successfully', 'success');
       } else {
         // Add new product
-        const newProduct = {
-          _id: Date.now().toString(),
-          ...productData,
-          salesCount: 0,
-          images: productImages
-        };
-        setProducts([...products, newProduct]);
+        if (!usingMockData) {
+          const response = await productsAPI.create({
+            ...productData,
+            images: productImages
+          });
+          savedProduct = response.data.data;
+        } else {
+          // Mock creation for demo data
+          savedProduct = {
+            _id: Date.now().toString(),
+            ...productData,
+            images: productImages,
+            salesCount: 0,
+            cooperative: { name: 'Your Cooperative' }
+          };
+        }
+        
+        setProducts([...products, savedProduct]);
         showAlert('Product added successfully', 'success');
       }
+      
       setShowAddModal(false);
       setShowEditModal(false);
       setSelectedProduct(null);
       setProductImages([]);
     } catch (error) {
-      showAlert('Error saving product', 'danger');
+      console.error('Error saving product:', error);
+      if (usingMockData) {
+        // For mock data, still add to local state
+        const mockProduct = {
+          _id: Date.now().toString(),
+          ...productData,
+          images: productImages,
+          salesCount: 0,
+          cooperative: { name: 'Your Cooperative' }
+        };
+        setProducts([...products, mockProduct]);
+        setShowAddModal(false);
+        setShowEditModal(false);
+        setSelectedProduct(null);
+        setProductImages([]);
+        showAlert('Product added to demo data', 'success');
+      } else {
+        const errorMessage = error.response?.data?.message || 'Error saving product';
+        showAlert(errorMessage, 'danger');
+      }
     }
   };
 
@@ -119,7 +195,7 @@ const ProductManagement = () => {
       return;
     }
     
-    // Mock file processing - in real app, you'd upload to server
+    // For demo purposes, create object URLs
     const newImages = files.map(file => ({
       url: URL.createObjectURL(file),
       name: file.name,
@@ -152,6 +228,7 @@ const ProductManagement = () => {
       category: '',
       status: 'active'
     });
+    const [saving, setSaving] = useState(false);
 
     useEffect(() => {
       if (product) {
@@ -175,9 +252,14 @@ const ProductManagement = () => {
       }
     }, [product]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      onSave(formData);
+      setSaving(true);
+      try {
+        await onSave(formData);
+      } finally {
+        setSaving(false);
+      }
     };
 
     const handleChange = (field, value) => {
@@ -191,6 +273,12 @@ const ProductManagement = () => {
         </Modal.Header>
         <Form onSubmit={handleSubmit}>
           <Modal.Body>
+            {usingMockData && (
+              <Alert variant="info" className="mb-3">
+                <small>Demo Mode: Changes will be saved locally only</small>
+              </Alert>
+            )}
+            
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
@@ -209,6 +297,7 @@ const ProductManagement = () => {
                   <Form.Control 
                     type="number" 
                     step="0.01"
+                    min="0"
                     value={formData.price}
                     onChange={(e) => handleChange('price', parseFloat(e.target.value))}
                     required 
@@ -251,8 +340,9 @@ const ProductManagement = () => {
                   <Form.Label>Stock Quantity *</Form.Label>
                   <Form.Control 
                     type="number" 
+                    min="0"
                     value={formData.stock}
-                    onChange={(e) => handleChange('stock', parseInt(e.target.value))}
+                    onChange={(e) => handleChange('stock', parseInt(e.target.value) || 0)}
                     required 
                   />
                 </Form.Group>
@@ -315,11 +405,11 @@ const ProductManagement = () => {
             )}
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="outline-secondary" onClick={onHide}>
+            <Button variant="outline-secondary" onClick={onHide} disabled={saving}>
               Cancel
             </Button>
-            <Button type="submit" variant="primary">
-              {product ? 'Update Product' : 'Add Product'}
+            <Button type="submit" variant="primary" disabled={saving}>
+              {saving ? 'Saving...' : (product ? 'Update Product' : 'Add Product')}
             </Button>
           </Modal.Footer>
         </Form>
@@ -335,6 +425,44 @@ const ProductManagement = () => {
         </Alert>
       )}
 
+      {/* Demo Mode Indicator */}
+      {usingMockData && (
+        <Alert variant="warning" className="mb-4">
+          <div className="d-flex justify-content-between align-items-center">
+            <div>
+              <strong>Demo Mode</strong> - Using sample data. Products will be saved locally.
+            </div>
+            <Button 
+              variant="outline-warning" 
+              size="sm"
+              onClick={() => {
+                const fetchProducts = async () => {
+                  try {
+                    setLoading(true);
+                    const response = await productsAPI.getAll();
+                    if (response.data && response.data.data) {
+                      setProducts(response.data.data);
+                      setUsingMockData(false);
+                      showAlert('Connected to live API successfully', 'success');
+                    } else {
+                      throw new Error('No data received from API');
+                    }
+                  } catch (error) {
+                    console.warn('API still not available:', error);
+                    showAlert('API not available, still using demo data', 'warning');
+                  } finally {
+                    setLoading(false);
+                  }
+                };
+                fetchProducts();
+              }}
+            >
+              Retry API Connection
+            </Button>
+          </div>
+        </Alert>
+      )}
+
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h2 className="fw-bold mb-2">Product Management</h2>
@@ -343,6 +471,7 @@ const ProductManagement = () => {
         <Button 
           variant="primary"
           onClick={() => setShowAddModal(true)}
+          disabled={loading}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="me-2">
             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -352,80 +481,99 @@ const ProductManagement = () => {
         </Button>
       </div>
 
-      <Card>
-        <Card.Body className="p-0">
-          <Table hover responsive>
-            <thead>
-              <tr>
-                <th className="ps-4">Product</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Status</th>
-                <th>Sales</th>
-                <th className="pe-4">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td className="ps-4">
-                    <div className="d-flex align-items-center">
-                      <div 
-                        className="rounded me-3 bg-light"
-                        style={{
-                          width: '40px',
-                          height: '40px',
-                          background: 'linear-gradient(135deg, #ed7418 0%, #3b82f6 100%)'
-                        }}
-                      ></div>
-                      <div>
-                        <div className="fw-semibold">{product.name}</div>
-                        <small className="text-muted">{product.description.substring(0, 50)}...</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <Badge bg="light" text="dark" className="text-capitalize">
-                      {product.category}
-                    </Badge>
-                  </td>
-                  <td>${product.price}</td>
-                  <td>
-                    <span className={product.stock < 10 ? 'text-warning fw-semibold' : ''}>
-                      {product.stock}
-                    </span>
-                  </td>
-                  <td>
-                    <Badge bg={getStatusBadge(product.status)} className="text-capitalize">
-                      {product.status}
-                    </Badge>
-                  </td>
-                  <td>{product.salesCount}</td>
-                  <td className="pe-4">
-                    <div className="d-flex gap-2">
-                      <Button 
-                        size="sm" 
-                        variant="outline-primary"
-                        onClick={() => handleEdit(product)}
-                      >
-                        Edit
-                      </Button>
-                      <Button 
-                        size="sm" 
-                        variant="outline-danger"
-                        onClick={() => handleDelete(product._id)}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </td>
+      {loading ? (
+        <div className="text-center py-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="mt-2 text-muted">Loading products...</p>
+        </div>
+      ) : (
+        <Card>
+          <Card.Body className="p-0">
+            <Table hover responsive>
+              <thead>
+                <tr>
+                  <th className="ps-4">Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Sales</th>
+                  <th className="pe-4">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Card.Body>
-      </Card>
+              </thead>
+              <tbody>
+                {products.length === 0 ? (
+                  <tr>
+                    <td colSpan="7" className="text-center py-5 text-muted">
+                      No products found. Click "Add Product" to create your first product.
+                    </td>
+                  </tr>
+                ) : (
+                  products.map((product) => (
+                    <tr key={product._id}>
+                      <td className="ps-4">
+                        <div className="d-flex align-items-center">
+                          <div 
+                            className="rounded me-3 bg-light"
+                            style={{
+                              width: '40px',
+                              height: '40px',
+                              background: 'linear-gradient(135deg, #ed7418 0%, #3b82f6 100%)'
+                            }}
+                          ></div>
+                          <div>
+                            <div className="fw-semibold">{product.name}</div>
+                            <small className="text-muted">
+                              {product.description ? `${product.description.substring(0, 50)}...` : 'No description'}
+                            </small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <Badge bg="light" text="dark" className="text-capitalize">
+                          {product.category}
+                        </Badge>
+                      </td>
+                      <td>${product.price}</td>
+                      <td>
+                        <span className={product.stock < 10 ? 'text-warning fw-semibold' : ''}>
+                          {product.stock}
+                        </span>
+                      </td>
+                      <td>
+                        <Badge bg={getStatusBadge(product.status)} className="text-capitalize">
+                          {product.status}
+                        </Badge>
+                      </td>
+                      <td>{product.salesCount || 0}</td>
+                      <td className="pe-4">
+                        <div className="d-flex gap-2">
+                          <Button 
+                            size="sm" 
+                            variant="outline-primary"
+                            onClick={() => handleEdit(product)}
+                          >
+                            Edit
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline-danger"
+                            onClick={() => handleDelete(product._id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
+      )}
 
       <ProductForm 
         show={showAddModal || showEditModal}
