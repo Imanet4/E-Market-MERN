@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
+import { useCart } from '../../contexts/CartContext';
 
 const Header = () => {
   const { user, logout } = useAuth();
+  const { cartCount } = useCart();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -101,20 +103,24 @@ const Header = () => {
             </NavDropdown>
 
             {/* Shopping Cart */}
-            <Nav.Link className="elegant-link position-relative me-3">
-              <CartIcon />
-              <Badge 
-                bg="primary" 
-                className="position-absolute top-0 start-100 translate-middle"
-                style={{ 
-                  backgroundColor: 'var(--primary)',
-                  fontSize: '0.6rem',
-                  padding: '2px 4px'
-                }}
-              >
-                0
-              </Badge>
-            </Nav.Link>
+            <LinkContainer to="/cart">
+              <Nav.Link className="elegant-link position-relative me-3">
+                <CartIcon />
+                {cartCount > 0 && (
+                  <Badge 
+                    bg="primary" 
+                    className="position-absolute top-0 start-100 translate-middle"
+                    style={{ 
+                      backgroundColor: 'var(--primary)',
+                      fontSize: '0.6rem',
+                      padding: '2px 4px'
+                    }}
+                  >
+                    {cartCount}
+                  </Badge>
+                )}
+              </Nav.Link>
+            </LinkContainer>
 
             {/* User Authentication */}
             {user ? (
