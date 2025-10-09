@@ -1,3 +1,4 @@
+// PRODUCTS MOCK DATA
 export const mockProducts = [
   {
     _id: '1',
@@ -123,5 +124,193 @@ export const mockProducts = [
       contents: ['Mini Argan Oil', 'Spice Samples', 'Ceramic Coasters', 'Traditional Tea'],
       weight: '1.2kg'
     }
+  }
+];
+
+// ADMIN DASHBOARD MOCK DATA
+export const getPlatformStats = () => ({
+  totalUsers: 1247,
+  totalSellers: 89,
+  totalProducts: 1563,
+  totalOrders: 3892,
+  totalRevenue: 187450,
+  activeUsers: 843,
+  monthlyGrowth: 12.5,
+  averageOrderValue: 48.20
+});
+
+export const getRecentActivity = () => [
+  {
+    id: 1,
+    type: 'user_registration',
+    description: 'New seller registered: Atlas Weavers Cooperative',
+    user: 'Ahmed Benali',
+    timestamp: '2024-01-15 14:30',
+    priority: 'info'
+  },
+  {
+    id: 2,
+    type: 'order_completed',
+    description: 'Large order completed: $1,247.50',
+    user: 'Marie Dubois',
+    timestamp: '2024-01-15 13:15',
+    priority: 'success'
+  },
+  {
+    id: 3,
+    type: 'product_approval',
+    description: 'Product requires approval: Premium Argan Oil Set',
+    user: 'Souss Women Cooperative',
+    timestamp: '2024-01-15 12:45',
+    priority: 'warning'
+  },
+  {
+    id: 4,
+    type: 'system_alert',
+    description: 'High traffic spike detected',
+    user: 'System',
+    timestamp: '2024-01-15 11:20',
+    priority: 'danger'
+  },
+  {
+    id: 5,
+    type: 'user_registration',
+    description: 'New buyer registered',
+    user: 'John Smith',
+    timestamp: '2024-01-15 10:30',
+    priority: 'info'
+  }
+];
+
+export const getUserDistribution = () => [
+  { role: 'buyers', count: 892, percentage: 71.5, color: '#3b82f6' },
+  { role: 'sellers', count: 89, percentage: 7.1, color: '#ed7418' },
+  { role: 'admins', count: 3, percentage: 0.2, color: '#10b981' },
+  { role: 'inactive', count: 263, percentage: 21.1, color: '#6b7280' }
+];
+
+// USER MANAGEMENT MOCK DATA
+export const getMockUsers = () => [
+  {
+    _id: '1',
+    username: 'ahmed_benali',
+    email: 'ahmed.benali@email.com',
+    role: 'seller',
+    profile: {
+      firstName: 'Ahmed',
+      lastName: 'Benali',
+      phone: '+212 612-345678',
+      avatar: '/placeholder.jpg'
+    },
+    cooperative: {
+      _id: 'coop1',
+      name: 'Souss Women Cooperative'
+    },
+    isActive: true,
+    createdAt: '2024-01-10',
+    lastLogin: '2024-01-15 14:30'
+  },
+  {
+    _id: '2',
+    username: 'marie_dubois',
+    email: 'marie.dubois@email.com',
+    role: 'buyer',
+    profile: {
+      firstName: 'Marie',
+      lastName: 'Dubois',
+      phone: '+33 1 23 45 67 89',
+      avatar: '/placeholder.jpg'
+    },
+    isActive: true,
+    createdAt: '2024-01-08',
+    lastLogin: '2024-01-15 13:15'
+  },
+  {
+    _id: '3',
+    username: 'admin_platform',
+    email: 'admin@atlasmarket.com',
+    role: 'admin',
+    profile: {
+      firstName: 'Platform',
+      lastName: 'Admin',
+      phone: '+212 522-123456',
+      avatar: '/placeholder.jpg'
+    },
+    isActive: true,
+    createdAt: '2023-12-01',
+    lastLogin: '2024-01-15 12:00'
+  },
+  {
+    _id: '4',
+    username: 'fatima_zahra',
+    email: 'fatima.zahra@email.com',
+    role: 'seller',
+    profile: {
+      firstName: 'Fatima',
+      lastName: 'Zahra',
+      phone: '+212 678-901234',
+      avatar: '/placeholder.jpg'
+    },
+    cooperative: {
+      _id: 'coop2',
+      name: 'Atlas Mountains Weavers'
+    },
+    isActive: false,
+    createdAt: '2024-01-05',
+    lastLogin: '2024-01-10 09:20'
+  }
+];
+
+// PLATFORM ANALYTICS MOCK DATA
+export const getRevenueData = () => [
+  { month: 'Jan', revenue: 12500, orders: 245 },
+  { month: 'Feb', revenue: 11800, orders: 230 },
+  { month: 'Mar', revenue: 13200, orders: 255 },
+  { month: 'Apr', revenue: 14500, orders: 280 },
+  { month: 'May', revenue: 16200, orders: 310 },
+  { month: 'Jun', revenue: 18750, orders: 365 }
+];
+
+export const getTopProducts = () => [
+  { name: 'Premium Argan Oil', sales: 156, revenue: 4678.44 },
+  { name: 'Moroccan Spice Box', sales: 89, revenue: 3559.11 },
+  { name: 'Handwoven Berber Rug', sales: 23, revenue: 4599.77 },
+  { name: 'Souvenir Box - Classic', sales: 45, revenue: 3599.55 },
+  { name: 'Leather Babouche', sales: 67, revenue: 2411.33 }
+];
+
+// COOPERATIVE MANAGEMENT MOCK DATA
+export const getMockCooperatives = () => [
+  {
+    _id: 'coop1',
+    name: 'Souss Women Cooperative',
+    email: 'souss.coop@email.com',
+    phone: '+212 528-123456',
+    address: {
+      city: 'Agadir',
+      country: 'Morocco'
+    },
+    description: 'Women-led cooperative specializing in argan oil production',
+    status: 'active',
+    memberCount: 45,
+    productCount: 12,
+    totalSales: 12450,
+    joinedDate: '2023-11-15'
+  },
+  {
+    _id: 'coop2',
+    name: 'Atlas Mountains Weavers',
+    email: 'atlas.weavers@email.com',
+    phone: '+212 524-789012',
+    address: {
+      city: 'Marrakech',
+      country: 'Morocco'
+    },
+    description: 'Traditional Berber rug weavers from the Atlas Mountains',
+    status: 'active',
+    memberCount: 23,
+    productCount: 8,
+    totalSales: 8900,
+    joinedDate: '2023-12-01'
   }
 ];
