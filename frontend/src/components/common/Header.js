@@ -219,13 +219,13 @@ const Header = () => {
                 )}
                 
                 {user.role === 'admin' && (
-                  <LinkContainer to="/admin">
+                  <LinkContainer to="/dashboard">
                     <NavDropdown.Item className="d-flex align-items-center">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="me-2">
                         <path d="M12 15l-5.5-5.5L8 8l4 4 8-8 1.5 1.5L12 15z"></path>
                         <path d="M22 12A10 10 0 1 1 12 2"></path>
                       </svg>
-                      Admin Panel
+                      Admin Dashboard
                     </NavDropdown.Item>
                   </LinkContainer>
                 )}
