@@ -452,3 +452,177 @@ export const getMockOrders = (userRole = 'buyer') => {
 
   return baseOrders;
 };
+
+// COOPERATIVES MOCK DATA
+export const getPublicCooperatives = () => [
+  {
+    _id: 'coop1',
+    name: 'Souss Women Cooperative',
+    description: 'Women-led cooperative specializing in authentic argan oil production from the Souss region. Empowering local women through sustainable economic opportunities.',
+    logo: '/placeholder.jpg',
+    coverImage: '/placeholder.jpg',
+    contact: {
+      email: 'souss.coop@email.com',
+      phone: '+212 528-123456',
+      address: {
+        city: 'Agadir',
+        region: 'Souss-Massa',
+        country: 'Morocco'
+      }
+    },
+    social: {
+      website: 'https://souss-cooperative.com',
+      facebook: 'sousscooperative',
+      instagram: 'souss_cooperative'
+    },
+    stats: {
+      memberCount: 45,
+      productCount: 12,
+      totalSales: 12450,
+      established: 2018,
+      rating: 4.8,
+      reviewCount: 156
+    },
+    specialties: ['argan-oil', 'cosmetics', 'organic-products'],
+    certifications: ['organic', 'fair-trade', 'women-owned'],
+    story: 'Founded in 2018 by a group of 15 women in rural Souss, our cooperative has grown to empower 45 local women. We specialize in traditional argan oil production while maintaining sustainable practices that protect our precious argan forest.',
+    featured: true,
+    status: 'active',
+    joinedDate: '2023-11-15'
+  },
+  {
+    _id: 'coop2',
+    name: 'Atlas Mountains Weavers',
+    description: 'Traditional Berber rug weavers from the High Atlas Mountains. Preserving ancient weaving techniques passed down through generations.',
+    logo: '/placeholder.jpg',
+    coverImage: '/placeholder.jpg',
+    contact: {
+      email: 'atlas.weavers@email.com',
+      phone: '+212 524-789012',
+      address: {
+        city: 'Marrakech',
+        region: 'Marrakech-Safi',
+        country: 'Morocco'
+      }
+    },
+    social: {
+      website: 'https://atlas-weavers.com',
+      instagram: 'atlas_weavers'
+    },
+    stats: {
+      memberCount: 23,
+      productCount: 8,
+      totalSales: 8900,
+      established: 2015,
+      rating: 4.9,
+      reviewCount: 89
+    },
+    specialties: ['berber-rugs', 'textiles', 'handicrafts'],
+    certifications: ['artisanal', 'cultural-heritage'],
+    story: 'Our cooperative brings together master weavers from remote Atlas Mountain villages. Each rug tells a story through its unique geometric patterns, with designs that have been preserved for centuries in Berber culture.',
+    featured: true,
+    status: 'active',
+    joinedDate: '2023-12-01'
+  },
+  {
+    _id: 'coop3',
+    name: 'Marrakech Spice Masters',
+    description: 'Curators of the finest Moroccan spices and traditional spice blends. Sourcing directly from local farmers across Morocco.',
+    logo: '/placeholder.jpg',
+    coverImage: '/placeholder.jpg',
+    contact: {
+      email: 'spice.masters@email.com',
+      phone: '+212 524-345678',
+      address: {
+        city: 'Marrakech',
+        region: 'Marrakech-Safi',
+        country: 'Morocco'
+      }
+    },
+    stats: {
+      memberCount: 18,
+      productCount: 25,
+      totalSales: 15600,
+      established: 2020,
+      rating: 4.7,
+      reviewCount: 234
+    },
+    specialties: ['spices', 'tea-blends', 'edible-goods'],
+    certifications: ['organic', 'direct-trade'],
+    story: 'Born in the heart of Marrakech spice souk, our cooperative works directly with farmers to bring you the most authentic Moroccan spices. We specialize in traditional blends like Ras el Hanout and preserved lemons.',
+    featured: false,
+    status: 'active',
+    joinedDate: '2024-01-10'
+  },
+  {
+    _id: 'coop4',
+    name: 'Fes Pottery Artisans',
+    description: 'Master ceramic artists from Fes creating traditional Moroccan pottery, tiles, and tagine pots using ancient techniques.',
+    logo: '/placeholder.jpg',
+    coverImage: '/placeholder.jpg',
+    contact: {
+      email: 'fes.pottery@email.com',
+      phone: '+212 535-901234',
+      address: {
+        city: 'Fes',
+        region: 'Fes-Meknes',
+        country: 'Morocco'
+      }
+    },
+    stats: {
+      memberCount: 32,
+      productCount: 15,
+      totalSales: 7800,
+      established: 2012,
+      rating: 4.6,
+      reviewCount: 167
+    },
+    specialties: ['ceramics', 'pottery', 'tagine-pots'],
+    certifications: ['artisanal', 'cultural-heritage'],
+    story: 'For generations, our families have practiced the art of Fes pottery. Our cooperative preserves the famous blue Fes ceramic tradition while innovating with contemporary designs that honor our heritage.',
+    featured: true,
+    status: 'active',
+    joinedDate: '2023-12-20'
+  },
+  {
+    _id: 'coop5',
+    name: 'Sahara Desert Crafts',
+    description: 'Artisans from Sahara desert communities creating unique leather goods, jewelry, and decorative items inspired by desert life.',
+    logo: '/placeholder.jpg',
+    coverImage: '/placeholder.jpg',
+    contact: {
+      email: 'sahara.crafts@email.com',
+      phone: '+212 528-567890',
+      address: {
+        city: 'Zagora',
+        region: 'Drâa-Tafilalet',
+        country: 'Morocco'
+      }
+    },
+    stats: {
+      memberCount: 28,
+      productCount: 20,
+      totalSales: 6200,
+      established: 2019,
+      rating: 4.5,
+      reviewCount: 98
+    },
+    specialties: ['leather-goods', 'jewelry', 'desert-crafts'],
+    certifications: ['artisanal', 'community-owned'],
+    story: 'Our cooperative represents nomadic and settled communities from the Sahara region. We create authentic leather babouches, silver jewelry, and decorative items that reflect the beauty and resilience of desert life.',
+    featured: false,
+    status: 'active',
+    joinedDate: '2024-01-05'
+  }
+];
+
+export const getCooperativeSpecialties = () => [
+  { value: 'argan-oil', label: 'Argan Oil', count: 1 },
+  { value: 'cosmetics', label: 'Cosmetics', count: 1 },
+  { value: 'berber-rugs', label: 'Berber Rugs', count: 1 },
+  { value: 'textiles', label: 'Textiles', count: 2 },
+  { value: 'spices', label: 'Spices', count: 1 },
+  { value: 'ceramics', label: 'Ceramics', count: 1 },
+  { value: 'leather-goods', label: 'Leather Goods', count: 1 },
+  { value: 'jewelry', label: 'Jewelry', count: 1 }
+];
