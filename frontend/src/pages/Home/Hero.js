@@ -60,7 +60,7 @@ const Hero = () => {
               Moroccan products.
             </p>
             
-            // In the Hero component, replace the buttons section with:
+            {/* In the Hero component, replace the buttons section with:*/}
               <div className="d-flex flex-wrap gap-3 mt-5">
                 <Link to="/products" className="text-decoration-none">
                   <Button 
