@@ -314,3 +314,141 @@ export const getMockCooperatives = () => [
     joinedDate: '2023-12-01'
   }
 ];
+
+// ORDERS MOCK DATA
+export const getMockOrders = (userRole = 'buyer') => {
+  const baseOrders = [
+    {
+      _id: '1',
+      orderNumber: 'ORD-1705321200-ABC123',
+      user: {
+        _id: 'user1',
+        profile: { firstName: 'Ahmed', lastName: 'Benali' },
+        email: 'ahmed.benali@email.com'
+      },
+      items: [
+        {
+          product: {
+            _id: '1',
+            name: 'Premium Argan Oil',
+            images: ['/placeholder.jpg'],
+            category: 'cosmetics'
+          },
+          cooperative: {
+            _id: 'coop1',
+            name: 'Souss Women Cooperative',
+            logo: '/placeholder.jpg'
+          },
+          quantity: 2,
+          price: 29.99,
+          subtotal: 59.98
+        }
+      ],
+      subtotal: 59.98,
+      shippingFee: 50,
+      taxAmount: 5.99,
+      total: 115.97,
+      status: 'delivered',
+      payment: {
+        method: 'card',
+        status: 'completed',
+        paidAt: '2024-01-15T10:30:00Z'
+      },
+      shippingAddress: {
+        firstName: 'Ahmed',
+        lastName: 'Benali',
+        street: '123 Main Street',
+        city: 'Casablanca',
+        country: 'Morocco',
+        postalCode: '20000',
+        phone: '+212 612-345678'
+      },
+      timeline: {
+        placed: '2024-01-15T10:00:00Z',
+        confirmed: '2024-01-15T11:00:00Z',
+        processed: '2024-01-16T09:00:00Z',
+        shipped: '2024-01-17T14:00:00Z',
+        delivered: '2024-01-20T11:00:00Z'
+      },
+      createdAt: '2024-01-15T10:00:00Z'
+    },
+    {
+      _id: '2',
+      orderNumber: 'ORD-1705234800-DEF456',
+      user: {
+        _id: 'user2', 
+        profile: { firstName: 'Marie', lastName: 'Dubois' },
+        email: 'marie.dubois@email.com'
+      },
+      items: [
+        {
+          product: {
+            _id: '2',
+            name: 'Handwoven Berber Rug',
+            images: ['/placeholder.jpg'],
+            category: 'clothing'
+          },
+          cooperative: {
+            _id: 'coop2',
+            name: 'Atlas Mountains Weavers',
+            logo: '/placeholder.jpg'
+          },
+          quantity: 1,
+          price: 199.99,
+          subtotal: 199.99
+        },
+        {
+          product: {
+            _id: '4',
+            name: 'Ceramic Tagine Pot', 
+            images: ['/placeholder.jpg'],
+            category: 'accessories'
+          },
+          cooperative: {
+            _id: 'coop3',
+            name: 'Fes Pottery Artisans',
+            logo: '/placeholder.jpg'
+          },
+          quantity: 1,
+          price: 49.99,
+          subtotal: 49.99
+        }
+      ],
+      subtotal: 249.98,
+      shippingFee: 0,
+      taxAmount: 24.99,
+      total: 274.97,
+      status: 'shipped',
+      payment: {
+        method: 'paypal',
+        status: 'completed', 
+        paidAt: '2024-01-14T15:20:00Z'
+      },
+      shippingAddress: {
+        firstName: 'Marie',
+        lastName: 'Dubois',
+        street: '456 Rue de Paris',
+        city: 'Paris',
+        country: 'France', 
+        postalCode: '75001',
+        phone: '+33 1 23 45 67 89'
+      },
+      timeline: {
+        placed: '2024-01-14T15:00:00Z',
+        confirmed: '2024-01-14T16:00:00Z',
+        processed: '2024-01-15T10:00:00Z',
+        shipped: '2024-01-16T09:00:00Z'
+      },
+      createdAt: '2024-01-14T15:00:00Z'
+    }
+  ];
+
+  // Filter based on user role
+  if (userRole === 'seller') {
+    return baseOrders.filter(order => 
+      order.items.some(item => item.cooperative._id === 'coop1') // Current seller's cooperative
+    );
+  }
+
+  return baseOrders;
+};
