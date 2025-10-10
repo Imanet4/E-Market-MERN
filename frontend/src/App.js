@@ -11,6 +11,7 @@ import { CartProvider } from './contexts/CartContext';
 import Cart from './pages/Cart/Cart';
 import Profile from './pages/Profile/Profile';
 import Orders from './pages/Orders/Orders';
+import Cooperatives from './pages/Cooperatives/Cooperatives';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/cooperatives" element={<Cooperatives />} />
           </Routes>
         </Layout>
       </Router>
