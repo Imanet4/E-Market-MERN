@@ -51,6 +51,7 @@ const Products = () => {
       }
     } catch (error) {
       console.warn('API not available, using mock data:', error);
+      console.log('Mock products:', mockProducts);
       // Fallback to shared mock data
       setProducts(mockProducts);
       setUsingMockData(true);

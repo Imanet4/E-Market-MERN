@@ -60,24 +60,23 @@ const Hero = () => {
               Moroccan products.
             </p>
             
-            {/* In the Hero component, replace the buttons section with:*/}
-              <div className="d-flex flex-wrap gap-3 mt-5">
-                <Link to="/products" className="text-decoration-none">
-                  <Button 
-                    className="btn-minimal btn-minimal-primary px-4 py-3"
-                  >
-                    Explore Collection
-                  </Button>
-                </Link>
-                
-                <Link to="/cooperatives" className="text-decoration-none">
-                  <Button 
-                    className="btn-minimal px-4 py-3"
-                  >
-                    Meet Artisans
-                  </Button>
-                </Link>
-              </div>
+            <div className="d-flex flex-wrap gap-3 mt-5">
+              <Link to="/products" className="text-decoration-none">
+                <Button 
+                  className="btn-minimal btn-minimal-primary px-4 py-3"
+                >
+                  Explore Collection
+                </Button>
+              </Link>
+              
+              <Link to="/cooperatives" className="text-decoration-none">
+                <Button 
+                  className="btn-minimal px-4 py-3"
+                >
+                  Meet Artisans
+                </Button>
+              </Link>
+            </div>
             
             {/* Stats */}
             <Row className="mt-5 pt-4 border-top border-white border-opacity-25">
@@ -101,7 +100,7 @@ const Hero = () => {
               className="position-relative mx-auto"
               style={{ maxWidth: '500px' }}
             >
-              {/* Sophisticated Geometric Design */}
+              {/* Logo Container */}
               <div 
                 className="rounded-4 mx-auto position-relative"
                 style={{
@@ -116,21 +115,48 @@ const Hero = () => {
                 }}
               >
                 <div 
-                  className="rounded-3 position-relative"
+                  className="rounded-3 position-relative bg-white p-4"
                   style={{
                     width: '300px',
                     height: '300px',
-                    background: 'linear-gradient(135deg, rgba(237, 116, 24, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)',
-                    border: '1px dashed rgba(251, 191, 36, 0.3)',
+                    border: '1px solid rgba(251, 191, 36, 0.3)',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
                   }}
                 >
-                  <div className="icon-elegant" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}>
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  {/* Main Logo */}
+                  <img 
+                    src="/images/logos/ATLASmarketLogo.png"
+                    alt="Atlas Market - Authentic Moroccan Crafts"
+                    className="img-fluid"
+                    style={{ 
+                      maxWidth: '250px',
+                      maxHeight: '250px',
+                      filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1))'
+                    }}
+                    onError={(e) => {
+                      // Fallback if image doesn't exist
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  
+                  {/* Fallback if logo doesn't exist */}
+                  <div 
+                    className="icon-elegant flex-column text-center"
+                    style={{ 
+                      backgroundColor: 'rgba(237, 116, 24, 0.1)',
+                      display: 'none',
+                      width: '200px',
+                      height: '200px'
+                    }}
+                  >
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--primary)' }}>
                       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                     </svg>
+                    <small className="mt-2 text-muted">Atlas Market Logo</small>
                   </div>
                 </div>
               </div>

@@ -22,15 +22,20 @@ const Cooperatives = () => {
       // Try real API first
       try {
         const response = await cooperativesAPI.getAllCooperatives();
-        if (response.data && response.data.data) {
+        console.log('API response:', response);
+
+        //Checking if we have a valid data
+        if (response.data && response.data.success && response.data.data) {
           setCooperatives(response.data.data);
           setUsingMockData(false);
+          console.log('Using API data:', response.data.data);
         } else {
           throw new Error('No data from API');
         }
       } catch (apiError) {
         console.warn('API not available, using mock data:', apiError);
         const mockCooperatives = getPublicCooperatives();
+        console.log('Mock cooperatives:', mockCooperatives);
         setCooperatives(mockCooperatives);
         setUsingMockData(true);
         setError('Connected to demo mode with sample cooperative data');
@@ -40,6 +45,11 @@ const Cooperatives = () => {
     } catch (err) {
       setError('Failed to load cooperatives');
       console.error('Cooperatives error:', err);
+
+      //Fallback to mock data even if everything fails
+      const mockCooperatives = getPublicCooperatives();
+      setCooperatives(mockCooperatives);
+      setUsingMockData(true);
     } finally {
       setLoading(false);
     }
