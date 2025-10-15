@@ -128,8 +128,9 @@ const FeaturedProducts = () => {
                       src={product.images[0] || `/images/products/default-product.jpg`}
                       style={{ 
                         height: '200px', 
-                        objectFit: 'cover',
-                        transition: 'transform 0.3s ease'
+                        objectFit: 'contain',
+                        transition: 'transform 0.3s ease',
+                        backgroundColor: '#f8f9fa'
                       }}
                       className="card-img-hover"
                       onError={(e) => {

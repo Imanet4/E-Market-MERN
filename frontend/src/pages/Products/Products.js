@@ -168,7 +168,7 @@ const Products = () => {
             <Card.Img 
               variant="top"
               src={product.images[0] || `/images/products/default-product.jpg`}
-              style={{ height: '200px', objectFit: 'cover' }}
+              style={{ height: '200px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
               onError={(e) => {
                 e.target.src = `/images/products/default-product.jpg`;
               }}
