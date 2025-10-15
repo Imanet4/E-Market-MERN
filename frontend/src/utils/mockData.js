@@ -286,7 +286,7 @@ export const mockSouvenirBoxes = [
     status: 'active',
     category: 'cosmetics',
     description: 'Complete Moroccan beauty ritual with authentic products for skin and hair care. Experience traditional Hammam at home.',
-    images: ['/images/products/beauty-box.jpg'],
+    images: ['/images/products/beauty-boxx.jpg'],
     contents: [
       { productId: '1', name: 'Premium Golden Argan Oil', quantity: 1 },
       { productId: '9', name: 'Rose Water Toner', quantity: 1 },
