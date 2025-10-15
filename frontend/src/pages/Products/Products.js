@@ -43,10 +43,13 @@ const Products = () => {
       setLoading(true);
       // Try to fetch from API first
       const response = await productsAPI.getAll();
-      if (response.data && response.data.data) {
+
+      //Check if we have valid, non-empty data
+      if (response.data && response.data.data && response.data.data.length > 0) {
         setProducts(response.data.data);
         setUsingMockData(false);
       } else {
+        //If API returns empty data, use mock data
         throw new Error('No data received from API');
       }
     } catch (error) {

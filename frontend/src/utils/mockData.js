@@ -459,7 +459,7 @@ export const getPublicCooperatives = () => [
     _id: 'coop1',
     name: 'Souss Women Cooperative',
     description: 'Women-led cooperative specializing in authentic argan oil production from the Souss region. Empowering local women through sustainable economic opportunities.',
-    logo: '/placeholder.jpg',
+    logo: '/images/cooperatives/SWC.png',
     coverImage: '/placeholder.jpg',
     contact: {
       email: 'souss.coop@email.com',
@@ -494,7 +494,7 @@ export const getPublicCooperatives = () => [
     _id: 'coop2',
     name: 'Atlas Mountains Weavers',
     description: 'Traditional Berber rug weavers from the High Atlas Mountains. Preserving ancient weaving techniques passed down through generations.',
-    logo: '/placeholder.jpg',
+    logo: '/images/cooperatives/AMW.png',
     coverImage: '/placeholder.jpg',
     contact: {
       email: 'atlas.weavers@email.com',
@@ -528,7 +528,7 @@ export const getPublicCooperatives = () => [
     _id: 'coop3',
     name: 'Marrakech Spice Masters',
     description: 'Curators of the finest Moroccan spices and traditional spice blends. Sourcing directly from local farmers across Morocco.',
-    logo: '/placeholder.jpg',
+    logo: '/images/cooperatives/MSM.png',
     coverImage: '/placeholder.jpg',
     contact: {
       email: 'spice.masters@email.com',
@@ -558,7 +558,7 @@ export const getPublicCooperatives = () => [
     _id: 'coop4',
     name: 'Fes Pottery Artisans',
     description: 'Master ceramic artists from Fes creating traditional Moroccan pottery, tiles, and tagine pots using ancient techniques.',
-    logo: '/placeholder.jpg',
+    logo: '/images/cooperatives/FPA.png',
     coverImage: '/placeholder.jpg',
     contact: {
       email: 'fes.pottery@email.com',
@@ -588,7 +588,7 @@ export const getPublicCooperatives = () => [
     _id: 'coop5',
     name: 'Sahara Desert Crafts',
     description: 'Artisans from Sahara desert communities creating unique leather goods, jewelry, and decorative items inspired by desert life.',
-    logo: '/placeholder.jpg',
+    logo: '/images/cooperatives/SDC.png',
     coverImage: '/placeholder.jpg',
     contact: {
       email: 'sahara.crafts@email.com',

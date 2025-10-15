@@ -25,31 +25,22 @@ const Cooperatives = () => {
         console.log('API response:', response);
 
         //Checking if we have a valid data
-        if (response.data && response.data.success && response.data.data) {
+        if (response.data && response.data.data && response.data.data.length > 0) {
           setCooperatives(response.data.data);
           setUsingMockData(false);
-          console.log('Using API data:', response.data.data);
+          
         } else {
           throw new Error('No data from API');
         }
       } catch (apiError) {
         console.warn('API not available, using mock data:', apiError);
         const mockCooperatives = getPublicCooperatives();
-        console.log('Mock cooperatives:', mockCooperatives);
+        
         setCooperatives(mockCooperatives);
         setUsingMockData(true);
         setError('Connected to demo mode with sample cooperative data');
         setTimeout(() => setError(''), 3000);
       }
-
-    } catch (err) {
-      setError('Failed to load cooperatives');
-      console.error('Cooperatives error:', err);
-
-      //Fallback to mock data even if everything fails
-      const mockCooperatives = getPublicCooperatives();
-      setCooperatives(mockCooperatives);
-      setUsingMockData(true);
     } finally {
       setLoading(false);
     }
@@ -115,49 +106,69 @@ const Cooperatives = () => {
               <div 
                 className="cooperative-circle"
                 style={{
-                  background: `linear-gradient(135deg, ${getRegionColor(cooperative.contact.address.region)} 0%, var(--royal) 100%)`,
                   animationDelay: `${index * 0.1}s`
                 }}
               >
-                <div className="cooperative-initial">
-                  {cooperative.name.charAt(0)}
+                {/* Logo Container with Image and Fallback */}
+                <div className="cooperative-logo-container">
+                  <img 
+                    src={cooperative.logo || '/images/cooperatives/default-coop-logo.png'}
+                    alt={`${cooperative.name} logo`}
+                    className="cooperative-logo-img"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      const fallback = e.target.parentNode.querySelector('.cooperative-initial-fallback');
+                      if (fallback) {
+                        fallback.style.display = 'flex';
+                      }
+                    }}
+                  />
+                  <div 
+                    className="cooperative-initial-fallback"
+                    style={{
+                      display: cooperative.logo ? 'none' : 'flex',
+                      background: `linear-gradient(135deg, ${getRegionColor(cooperative.contact.address.region)} 0%, var(--royal) 100%)`,
+                    }}
+                  >
+                    {cooperative.name.charAt(0)}
+                  </div>
                 </div>
-                
-                {/* Hover Overlay */}
-                <div className={`cooperative-hover-content ${hoveredCard === cooperative._id ? 'visible' : ''}`}>
-                  <div className="hover-content-inner">
-                    <h6 className="fw-bold mb-2">{cooperative.name}</h6>
-                    <p className="small mb-2">
-                      {cooperative.contact.address.city}, {cooperative.contact.address.region}
-                    </p>
-                    <div className="specialties mb-3">
-                      {(cooperative.specialties || []).slice(0, 2).map(specialty => (
-                        <Badge 
-                          key={specialty}
-                          bg="light" 
-                          text="dark"
-                          className="me-1 mb-1 small"
-                        >
-                          {specialty.split('-').map(word => 
-                            word.charAt(0).toUpperCase() + word.slice(1)
-                          ).join(' ')}
-                        </Badge>
-                      ))}
-                    </div>
-                    <div className="hover-actions">
-                      <Link 
-                        to={`/cooperatives/${cooperative._id}`}
-                        className="btn btn-outline-light btn-sm me-2"
+              </div>
+
+              {/* HOVER CARD - MOVED OUTSIDE THE CIRCLE */}
+              <div className={`cooperative-hover-content ${hoveredCard === cooperative._id ? 'visible' : ''}`}>
+                <div className="hover-content-inner">
+                  <h6 className="fw-bold mb-2">{cooperative.name}</h6>
+                  <p className="small mb-2">
+                    {cooperative.contact.address.city}, {cooperative.contact.address.region}
+                  </p>
+                  <div className="specialties mb-3">
+                    {(cooperative.specialties || []).slice(0, 2).map(specialty => (
+                      <Badge 
+                        key={specialty}
+                        bg="light" 
+                        text="dark"
+                        className="me-1 mb-1 small"
                       >
-                        Learn More
-                      </Link>
-                      <Link 
-                        to={`/products?cooperative=${cooperative._id}`}
-                        className="btn btn-light btn-sm"
-                      >
-                        Shop
-                      </Link>
-                    </div>
+                        {specialty.split('-').map(word => 
+                          word.charAt(0).toUpperCase() + word.slice(1)
+                        ).join(' ')}
+                      </Badge>
+                    ))}
+                  </div>
+                  <div className="hover-actions">
+                    <Link 
+                      to={`/cooperatives/${cooperative._id}`}
+                      className="btn btn-outline-light btn-sm me-2"
+                    >
+                      Learn More
+                    </Link>
+                    <Link 
+                      to={`/products?cooperative=${cooperative._id}`}
+                      className="btn btn-light btn-sm"
+                    >
+                      Shop
+                    </Link>
                   </div>
                 </div>
               </div>
