@@ -114,15 +114,18 @@ const Header = () => {
             <LinkContainer to="/cooperatives">
               <Nav.Link className="elegant-link mx-2">Cooperatives</Nav.Link>
             </LinkContainer>
-            <Nav.Link className="elegant-link mx-2 fw-bold" style={{ color: 'var(--gold)' }}>
-              Souvenir Boxes
-            </Nav.Link>
+            <LinkContainer to="/souvenir-boxes">
+              <Nav.Link className="elegant-link mx-2 fw-bold" style={{ color: 'var(--gold)' }}>
+                Souvenir Boxes
+              </Nav.Link>
+            </LinkContainer>
           </Nav>
 
           {/* Right-side Navigation */}
           <Nav className="align-items-center">
             {/* Language Switcher */}
-            <NavDropdown 
+            {/* Commented for now till I include it later*/}
+            {/* <NavDropdown 
               title={<LanguageIcon />} 
               id="language-dropdown" 
               className="me-3 elegant-link"
@@ -131,7 +134,7 @@ const Header = () => {
               <NavDropdown.Item>English</NavDropdown.Item>
               <NavDropdown.Item>Français</NavDropdown.Item>
               <NavDropdown.Item>العربية</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
 
             {/* Shopping Cart */}
             <LinkContainer to="/cart">

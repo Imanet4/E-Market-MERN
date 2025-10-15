@@ -14,6 +14,7 @@ import Orders from './pages/Orders/Orders';
 import Cooperatives from './pages/Cooperatives/Cooperatives';
 import ProductDetails from './pages/Products/ProductDetails';
 import CooperativeDetails from './pages/Cooperatives/CooperativeDetails';
+import SouvenirBoxes from './pages/SouvenirBoxes/SouvenirBoxes';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/cooperatives" element={<Cooperatives />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/cooperatives/:id" element={<CooperativeDetails />} />
+            <Route path="/souvenir-boxes" element={<SouvenirBoxes />} />
           </Routes>
         </Layout>
       </Router>
