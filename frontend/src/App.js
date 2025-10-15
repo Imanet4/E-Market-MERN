@@ -13,6 +13,7 @@ import Profile from './pages/Profile/Profile';
 import Orders from './pages/Orders/Orders';
 import Cooperatives from './pages/Cooperatives/Cooperatives';
 import ProductDetails from './pages/Products/ProductDetails';
+import CooperativeDetails from './pages/Cooperatives/CooperativeDetails';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/cooperatives" element={<Cooperatives />} />
             <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/cooperatives/:id" element={<CooperativeDetails />} />
           </Routes>
         </Layout>
       </Router>
