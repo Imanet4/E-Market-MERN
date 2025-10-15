@@ -162,12 +162,27 @@ const FeaturedProducts = () => {
                       </small>
                     </div>
                     
-                    <Card.Title 
-                      className="h6 mb-2"
-                      style={{ color: 'var(--earth-dark)' }}
+                    <Link 
+                      to={`/products/${product._id}`} 
+                      style={{ textDecoration: 'none' }}
+                      className="mb-2"
                     >
-                      {product.name}
-                    </Card.Title>
+                      <Card.Title 
+                        className="h6 mb-0"
+                        style={{ 
+                          color: 'var(--earth-dark)',
+                          transition: 'color 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = 'var(--primary)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.color = 'var(--earth-dark)';
+                        }}
+                      >
+                        {product.name}
+                      </Card.Title>
+                    </Link>
                     
                     <Card.Text 
                       className="flex-grow-1 small text-muted"

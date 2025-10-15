@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form, InputGroup, Badge, Pagination, Alert, Toast } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { productsAPI } from '../../services/products';
 import { useCart } from '../../contexts/CartContext';
 import { mockProducts } from '../../utils/mockData';
@@ -168,7 +169,7 @@ const Products = () => {
             <Card.Img 
               variant="top"
               src={product.images[0] || `/images/products/default-product.jpg`}
-              style={{ height: '200px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
+              style={{ height: '200px', objectFit: 'contain', backgroundColor: '#f8f9fa', padding: '10px' }}
               onError={(e) => {
                 e.target.src = `/images/products/default-product.jpg`;
               }}
@@ -199,9 +200,24 @@ const Products = () => {
               </Badge>
             </div>
             
-            <Card.Title className="h6 mb-2" style={{ color: 'var(--earth-dark)' }}>
-              {product.name}
-            </Card.Title>
+            <Link to={`/products/${product._id}`} 
+                  style={{ textDecoration: 'none' }}
+                  className="mb-2"
+            >
+              <Card.Title className="h6 mb-2" 
+                          style={{ color: 'var(--earth-dark)',
+                                    transition: 'color 0.2s ease'
+                           }}
+                           onMouseEnter={(e) => {
+                            e.target.style.color = 'var(--primary)';
+                           }}
+                           onMouseLeave={(e) => {
+                            e.target.style.color = 'var(--earth-dark)';
+                           }}
+              >
+                {product.name}
+              </Card.Title>
+            </Link>
             
             <Card.Text className="flex-grow-1 small text-muted mb-3">
               {product.description.length > 100 
