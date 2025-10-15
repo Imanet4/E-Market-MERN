@@ -9,7 +9,7 @@ export const mockProducts = [
     status: 'active',
     category: 'cosmetics',
     description: '100% pure organic argan oil cold-pressed from Souss region. Rich in vitamin E and antioxidants for radiant skin and healthy hair. Perfect for hydration and anti-aging.',
-    images: ['/images/products/argan-oil.png'],
+    images: ['/images/products/argan-oil.jpg'],
     cooperative: { 
       _id: 'coop1',
       name: 'Souss Women Cooperative',
@@ -31,7 +31,7 @@ export const mockProducts = [
     status: 'active',
     category: 'food',
     description: 'Traditional Moroccan amlou spread made with roasted almonds, argan oil, and honey. Delicious on bread or as a healthy snack.',
-    images: ['/images/products/amlou-spread.png'],
+    images: ['/images/products/amlou-spread.jpg'],
     cooperative: { 
       _id: 'coop1',
       name: 'Souss Women Cooperative',
@@ -55,7 +55,7 @@ export const mockProducts = [
     status: 'active',
     category: 'home-decor',
     description: 'Authentic Berber rug with traditional geometric patterns. Handcrafted by skilled artisans using ancient weaving techniques passed through generations.',
-    images: ['/images/products/berber-rug.png'],
+    images: ['/images/products/berber-rug.jpg'],
     cooperative: { 
       _id: 'coop2',
       name: 'Atlas Mountains Weavers',
@@ -77,7 +77,7 @@ export const mockProducts = [
     status: 'active',
     category: 'accessories',
     description: 'Vibrant handwoven keychain featuring traditional Berber patterns. Each piece is unique and carries cultural significance.',
-    images: ['/images/products/woven-keychain.png'],
+    images: ['/images/products/woven-keychain.jpg'],
     cooperative: { 
       _id: 'coop2',
       name: 'Atlas Mountains Weavers',
@@ -100,7 +100,7 @@ export const mockProducts = [
     status: 'active',
     category: 'food',
     description: 'Pure mountain honey collected from the Atlas Mountains. Rich flavor with natural antibacterial properties and exquisite taste.',
-    images: ['/images/products/mountain-honey.png'],
+    images: ['/images/products/mountain-honey.jpg'],
     cooperative: { 
       _id: 'coop3',
       name: 'Marrakech Spice Masters',
@@ -124,7 +124,7 @@ export const mockProducts = [
     status: 'active',
     category: 'home-decor',
     description: 'Set of 4 hand-painted ceramic coasters featuring traditional Fes zelige patterns. Each coaster is a miniature work of art.',
-    images: ['/images/products/tile-coasters.png'],
+    images: ['/images/products/tile-coasters.jpg'],
     cooperative: { 
       _id: 'coop4',
       name: 'Fes Pottery Artisans',
@@ -148,7 +148,7 @@ export const mockProducts = [
     status: 'active',
     category: 'jewelry',
     description: 'Handcrafted silver jewelry with traditional Berber charms and symbols. Each piece tells a story of Sahara nomadic heritage.',
-    images: ['/images/products/silver-jewelry.png'],
+    images: ['/images/products/silver-jewelry.jpg'],
     cooperative: { 
       _id: 'coop5',
       name: 'Sahara Desert Crafts',
@@ -169,7 +169,7 @@ export const mockProducts = [
     status: 'active',
     category: 'accessories',
     description: 'Beautiful leather bag with intricate embroidery. Handcrafted using traditional techniques with genuine leather and colorful threads.',
-    images: ['/images/products/leather-bag.png'],
+    images: ['/images/products/leather-bag.jpg'],
     cooperative: { 
       _id: 'coop5',
       name: 'Sahara Desert Crafts',
@@ -193,7 +193,7 @@ export const mockProducts = [
     status: 'active',
     category: 'cosmetics',
     description: 'Pure rose water distilled from Damask roses. Natural toner that hydrates, refreshes, and balances skin pH. Alcohol-free and gentle.',
-    images: ['/images/products/rose-water.png'],
+    images: ['/images/products/rose-water.jpg'],
     cooperative: { 
       _id: 'coop1',
       name: 'Souss Women Cooperative',
@@ -215,7 +215,7 @@ export const mockProducts = [
     status: 'active',
     category: 'cosmetics',
     description: 'Traditional black soap made from olive oil and essential oils. Perfect for Hammam ritual, exfoliation, and deep cleansing.',
-    images: ['/images/products/black-soap.png'],
+    images: ['/images/products/black-soap.jpg'],
     cooperative: { 
       _id: 'coop4',
       name: 'Fes Pottery Artisans',
@@ -237,7 +237,7 @@ export const mockProducts = [
     status: 'active',
     category: 'cosmetics',
     description: 'Mineral-rich clay from Atlas Mountains. Deep cleanses, detoxifies, and revitalizes skin. Suitable for all skin types.',
-    images: ['/images/products/clay-mask.png'],
+    images: ['/images/products/clay-mask.jpg'],
     cooperative: { 
       _id: 'coop2',
       name: 'Atlas Mountains Weavers',
@@ -263,7 +263,7 @@ export const mockSouvenirBoxes = [
     status: 'active',
     category: 'premium',
     description: 'Curated luxury collection featuring our finest products. Includes argan oil, silver jewelry, ceramic coasters, and traditional spices in elegant packaging.',
-    images: ['/images/products/luxury-gift-box.png'],
+    images: ['/images/products/luxury-gift-box.jpg'],
     contents: [
       { productId: '1', name: 'Premium Golden Argan Oil', quantity: 1 },
       { productId: '7', name: 'Berber Silver Charm Jewelry', quantity: 1 },
@@ -286,7 +286,7 @@ export const mockSouvenirBoxes = [
     status: 'active',
     category: 'cosmetics',
     description: 'Complete Moroccan beauty ritual with authentic products for skin and hair care. Experience traditional Hammam at home.',
-    images: ['/images/products/beauty-box.png'],
+    images: ['/images/products/beauty-box.jpg'],
     contents: [
       { productId: '1', name: 'Premium Golden Argan Oil', quantity: 1 },
       { productId: '9', name: 'Rose Water Toner', quantity: 1 },
@@ -308,7 +308,7 @@ export const mockSouvenirBoxes = [
     status: 'active',
     category: 'handicrafts',
     description: 'Discover authentic Moroccan craftsmanship with this curated selection of traditional artisan products.',
-    images: ['/images/products/crafts-box.png'],
+    images: ['/images/products/crafts-box.jpg'],
     contents: [
       { productId: '4', name: 'Colorful Woven Keychain', quantity: 2 },
       { productId: '8', name: 'Embroidered Leather Bag', quantity: 1 },

@@ -125,13 +125,16 @@ const FeaturedProducts = () => {
                   <div className="position-relative overflow-hidden">
                     <Card.Img 
                       variant="top"
-                      src={`https://via.placeholder.com/300x200/ED7418/FFFFFF?text=${encodeURIComponent(product.name)}`}
+                      src={product.images[0] || `/images/products/default-product.jpg`}
                       style={{ 
                         height: '200px', 
                         objectFit: 'cover',
                         transition: 'transform 0.3s ease'
                       }}
                       className="card-img-hover"
+                      onError={(e) => {
+                        e.target.src = `/images/products/default-product.jpg`;
+                      }}
                     />
                     <div 
                       className="position-absolute top-0 end-0 m-2"

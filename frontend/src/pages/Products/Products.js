@@ -23,11 +23,11 @@ const Products = () => {
 
   const categories = [
     { value: 'all', label: 'All Categories' },
-    { value: 'edible-goods', label: 'Edible Goods' },
-    { value: 'cosmetics', label: 'Cosmetics' },
-    { value: 'clothing', label: 'Clothing' },
-    { value: 'accessories', label: 'Accessories' },
-    { value: 'souvenir-boxes', label: 'Souvenir Boxes' }
+    { value: 'cosmetics', label: 'Cosmetics & Care' },
+    { value: 'food', label: 'Food & Delicacies' },
+    { value: 'jewelry', label: 'Jewelry' },
+    { value: 'home-decor', label: 'Home Decor' },
+    { value: 'accessories', label: 'Accessories' }
   ];
 
   useEffect(() => {
@@ -167,8 +167,11 @@ const Products = () => {
           <div className="position-relative">
             <Card.Img 
               variant="top"
-              src={`https://via.placeholder.com/300x200/ED7418/FFFFFF?text=${encodeURIComponent(product.name)}`}
+              src={product.images[0] || `/images/products/default-product.jpg`}
               style={{ height: '200px', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.src = `/images/products/default-product.jpg`;
+              }}
             />
             {product.stock === 0 && (
               <div className="position-absolute top-0 start-0 m-2">
