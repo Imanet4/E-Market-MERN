@@ -24,15 +24,38 @@ const Login = () => {
     }
   };
 
+  // Mosque SVG Icon
+  const MosqueIcon = () => (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M12 2L22 8V22H2V8L12 2Z"></path>
+      <path d="M12 22V12"></path>
+      <path d="M17 12H7"></path>
+      <path d="M8 8H16"></path>
+      <path d="M6 16H18"></path>
+      <path d="M6 19H18"></path>
+    </svg>
+  );
+
+  // Demo Info SVG Icon
+  const DemoInfoIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </svg>
+  );
+
   return (
-    <Container className="py-5">
-      <Row className="justify-content-center">
+    <Container className="py-5 mt-4">
+      <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
         <Col md={6} lg={4}>
-          <Card className="shadow tile-border">
+          <Card className="shadow tile-border mx-auto" style={{ maxWidth: '400px' }}>
             <Card.Body className="p-4">
               <div className="text-center mb-4">
-                <span className="fs-1">🕌</span>
-                <h3 className="mt-2" style={{ color: 'var(--royal)' }}>Welcome Back</h3>
+                <div style={{ color: 'var(--royal)' }}>
+                  <MosqueIcon />
+                </div>
+                <h3 className="mt-3" style={{ color: 'var(--royal)' }}>Welcome Back</h3>
                 <p className="text-earth">Sign in to your account</p>
               </div>
 
@@ -109,8 +132,12 @@ const Login = () => {
               </div>
 
               {/* Demo Accounts Hint */}
-              <div className="mt-4 p-3 rounded" style={{ backgroundColor: 'var(--gold)', opacity: 0.1 }}>
-                <small className="text-center d-block text-earth">
+              <div className="mt-4 p-3 rounded d-flex align-items-center justify-content-center" 
+                   style={{ backgroundColor: 'rgba(251, 191, 36, 0.1)' }}>
+                <div className="me-2" style={{ color: 'var(--gold)' }}>
+                  <DemoInfoIcon />
+                </div>
+                <small className="text-center text-earth">
                   <strong>Demo:</strong> Use any email/password to test
                 </small>
               </div>

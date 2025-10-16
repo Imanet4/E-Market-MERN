@@ -12,6 +12,7 @@ const Register = () => {
   const [error, setError] = useState('');
 
   const password = watch('password');
+  const selectedRole = watch('role');
 
   const onSubmit = async (data) => {
     try {
@@ -61,15 +62,39 @@ const Register = () => {
     }
   };
 
+  // Celebration SVG Icon
+  const CelebrationIcon = () => (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      <line x1="12" y1="2" x2="12" y2="22"></line>
+      <line x1="22" y1="9.27" x2="2" y2="9.27"></line>
+      <line x1="15.09" y1="8.26" x2="8.91" y2="21.02"></line>
+      <line x1="18.18" y1="21.02" x2="5.82" y2="8.26"></line>
+      <line x1="17" y1="14.14" x2="7" y2="14.14"></line>
+    </svg>
+  );
+
+  // Cooperative SVG Icon
+  const CooperativeIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9" cy="7" r="4"></circle>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </svg>
+  );
+
   return (
-    <Container className="py-5">
-      <Row className="justify-content-center">
+    <Container className="py-5 mt-4">
+      <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
         <Col md={8} lg={6}>
-          <Card className="shadow tile-border">
+          <Card className="shadow tile-border mx-auto">
             <Card.Body className="p-4">
               <div className="text-center mb-4">
-                <span className="fs-1">🎉</span>
-                <h3 className="mt-2" style={{ color: 'var(--royal)' }}>Join Our Community</h3>
+                <div style={{ color: 'var(--royal)' }}>
+                  <CelebrationIcon />
+                </div>
+                <h3 className="mt-3" style={{ color: 'var(--royal)' }}>Join Our Community</h3>
                 <p className="text-earth">Create your account</p>
               </div>
 
@@ -215,17 +240,30 @@ const Register = () => {
                 </Form.Group>
 
                 {/* Conditional Cooperative Name Field */}
-                <Form.Group className="mb-4">
-                  <Form.Label>Cooperative Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your cooperative name"
-                    {...register('cooperativeName')}
-                  />
-                  <Form.Text className="text-earth">
-                    Only required for seller accounts
-                  </Form.Text>
-                </Form.Group>
+                {selectedRole === 'seller' && (
+                  <Form.Group className="mb-4">
+                    <Form.Label className="d-flex align-items-center">
+                      <span className="me-2" style={{ color: 'var(--primary)' }}>
+                        <CooperativeIcon />
+                      </span>
+                      Cooperative Name
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter your cooperative name"
+                      {...register('cooperativeName', {
+                        required: selectedRole === 'seller' ? 'Cooperative name is required for seller accounts' : false
+                      })}
+                      isInvalid={errors.cooperativeName}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.cooperativeName?.message}
+                    </Form.Control.Feedback>
+                    <Form.Text className="text-earth">
+                      Required for seller accounts
+                    </Form.Text>
+                  </Form.Group>
+                )}
 
                 <Button
                   variant="primary"
