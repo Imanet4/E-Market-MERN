@@ -99,3 +99,54 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 3. Start the frontend development server:
    - npm start
    - *Frontend will run on http://localhost:3000*
+  
+
+ ## 🖼️ Application Screenshots
+
+### Core Pages
+| Page | Description | Screenshot |
+|------|-------------|------------|
+| **Home Page** | Main landing page of the application | ![HomePage](../images/HomePage.png) |
+| **Products Page** | Browse all available products | ![ProductsPage](../images/ProductsPage.png) |
+| **Cooperatives Page** | View all cooperatives | ![CooperativesPage](../images/CooperativesPage.png) |
+| **Souvenir Boxes Page** | Special souvenir boxes section | ![SouvenirBoxesPage](../images/SouvenirBoxesPage.png) |
+
+### Authentication
+| Page | Description | Screenshot |
+|------|-------------|------------|
+| **Login Page** | User authentication page | ![LoginPage](../images/LoginPage.png) |
+| **Register Page** | New user registration | ![RegisterPage](../images/RegisterPage.png) |
+
+### User Profiles
+| Profile Type | Description | Screenshot |
+|-------------|-------------|------------|
+| **Buyer Profile** | Buyer user profile interface | ![BuyerProfile-01](../images/BuyerProfile-01.png) |
+| **Buyer Profile Details** | Additional buyer profile views | ![BuyerProfile-02](../images/BuyerProfile-02.png) ![BuyerProfile-03](../images/BuyerProfile-03.png) |
+| **Seller Profile** | Seller profile interface | ![SellerProfile_type](../images/SellerProfile_type.png) |
+| **Admin Profile** | Administrator profile interface | ![AdminProfile_type](../images/AdminProfile_type.png) |
+
+### Buyer Features
+| Feature | Description | Screenshot |
+|---------|-------------|------------|
+| **Shopping Cart** | Buyer's shopping cart page | ![BuyerShoppingCart](../images/BuyerShoppingCart.png) |
+
+### Cooperative Details
+| Cooperative | Description | Screenshot |
+|------------|-------------|------------|
+| **Cooperative Cards** | Individual cooperative profile cards | ![CooperativeCard-1](../images/CooperativeCard-1.png) ![CooperativeCard-2](../images/CooperativeCard-2.png) ![CooperativeCard-3](../images/CooperativeCard-3.png) ![CooperativeCard-4](../images/CooperativeCard-4.png) ![CooperativeCard-5](../images/CooperativeCard-5.png) |
+
+### Seller Dashboard
+| Section | Description | Screenshot |
+|---------|-------------|------------|
+| **Seller Overview** | Main seller dashboard overview | ![SellerDashboard_Overview](../images/SellerDashboard_Overview.png) |
+| **Product Creation** | Create new product listings | ![SellerDashboard_Product-Creation](../images/SellerDashboard_Product-Creation.png) |
+| **Order Management** | Manage customer orders | ![SellerDashboard_Order-Management](../images/SellerDashboard_Order-Management.png) |
+| **Inventory Management** | Track and manage inventory | ![SellerDashboard_Inventory-Management](../images/SellerDashboard_Inventory-Management.png) |
+
+### Admin Dashboard
+| Section | Description | Screenshot |
+|---------|-------------|------------|
+| **Platform Overview** | Admin main dashboard overview | ![AdminDashboard_Platform-Overview](../images/AdminDashboard_Platform-Overview.png) |
+| **User Management** | Manage system users and roles | ![AdminDashboard_User-Management](../images/AdminDashboard_User-Management.png) |
+| **Platform Analytics** | Analytics and reporting | ![AdminDashboard_Platform-Analytics](../images/AdminDashboard_Platform-Analytics.png) |
+| **System Settings** | Platform configuration | ![AdminDashboard_System-Settings](../images/AdminDashboard_System-Settings.png) |
