@@ -99,7 +99,32 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 3. Start the frontend development server:
    - npm start
    - *Frontend will run on http://localhost:3000*
+
+**🔑 API Endpoints**
+- Authentication :
+  * POST /api/auth/register - User registration
+  * POST /api/auth/login - User login
+  * GET /api/auth/me - Get current user
   
+- Products :
+  * GET /api/products - Get all products
+  * POST /api/products - Create new product (Seller)
+  * PUT /api/products/:id - Update product
+  * DELETE /api/products/:id - Delete product
+
+- Orders :
+  * POST /api/orders - Create new order
+  * GET /api/orders - Get user orders
+  * PUT /api/orders/:id - Update order status
+
+- Users :
+  * GET /api/users - Get all users (Admin)
+  * PUT /api/users/:id - Update user role
+
+## 👥 User Roles & Permissions
+| Role | Dashboard Access | Product Management | Order Management | User Management |
+|------|------------------|--------------------|------------------|-----------------|
+|**Admin**| Full dashboard | View all Products | All orders | Full access |
 
  ## 🖼️ Application Screenshots
 
