@@ -86,3 +86,6 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
    * MONGODB_URI=mongodb://localhost:27017/emarket
    * JWT_SECRET=your_jwt_secret_key
    * NODE_ENV=development
+4. Start the backend server:
+ - npm start
+*Backend will run on http://localhost:5000*
