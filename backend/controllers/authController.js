@@ -21,9 +21,8 @@ const generateToken = (userId, res) => {
   return token;
 };
 
-// @desc    Register user
-// @route   POST /api/auth/register
-// @access  Public
+//  Register user
+
 const register = async (req, res) => {
   try {
     const { username, email, password, role, firstName, lastName, phone, cooperativeName } = req.body;
@@ -101,9 +100,8 @@ const register = async (req, res) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
+//   Login user
+
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -160,9 +158,8 @@ const login = async (req, res) => {
   }
 };
 
-// @desc    Logout user / clear cookie
-// @route   POST /api/auth/logout
-// @access  Private
+//   Logout user / clear cookie
+
 const logout = async (req, res) => {
   try {
     // Clear the token cookie
@@ -187,9 +184,8 @@ const logout = async (req, res) => {
   }
 };
 
-// @desc    Get current logged in user
-// @route   GET /api/auth/me
-// @access  Private
+//   Get current logged in user
+
 const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
@@ -210,9 +206,8 @@ const getMe = async (req, res) => {
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/auth/updatedetails
-// @access  Private
+//  Update user profile
+
 const updateDetails = async (req, res) => {
   try {
     const fieldsToUpdate = {
@@ -252,9 +247,8 @@ const updateDetails = async (req, res) => {
   }
 };
 
-// @desc    Update password
-// @route   PUT /api/auth/updatepassword
-// @access  Private
+//   Update password
+
 const updatePassword = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('+password');
