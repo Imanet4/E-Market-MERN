@@ -82,7 +82,7 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
  - npm install
 3. Environment Configuration:
  - Create a .env file in the backend directory with:
-   PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/emarket
-   JWT_SECRET=your_jwt_secret_key
-   NODE_ENV=development
+   * PORT=5000
+   * MONGODB_URI=mongodb://localhost:27017/emarket
+   * JWT_SECRET=your_jwt_secret_key
+   * NODE_ENV=development
