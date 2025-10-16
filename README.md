@@ -28,7 +28,6 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 - Order Management - Process and track customer orders
 - Sales Analytics - View sales reports and revenue metrics
 
-
 *👤 Buyer Features:*
 
 - Product Browsing - Search and filter products by categories
@@ -36,3 +35,19 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 - Order System - Place orders and track order status
 - Order History - View past purchases and order details
 - Profile Management - Update personal information and preferences
+
+**🛠️ Tech Stack**
+    *Frontend:*
+      - React.js
+      - Context API for state management
+      - CSS3 with modern styling & bootstrap
+      - Axios for API calls
+
+  *Backend:*
+      - Node.js
+      - Express.js
+      - MongoDB with Mongoose
+      - JWT Authentication
+      - File upload handling
+
+
