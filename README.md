@@ -77,3 +77,6 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 ## Backend Setup
 
 1. Navigate to backend directory:
+ - cd backend
+2. Install dependencies :
+ - npm install
