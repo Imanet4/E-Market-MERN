@@ -51,7 +51,7 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
  - JWT Authentication
  - File upload handling
 
-## Project Structure
+## 📁 Project Structure
 
 | Backend (`/backend`) | Frontend (`/frontend`) |
 |---------------------|-----------------------|
@@ -66,3 +66,9 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 | `.env` - Environment variables | |
 | `index.js` - Entry point | |
 
+
+**🚀 Installation & Setup**
+*Prerequisites*
+- Node.js (v18 or higher)
+- MongoDB (local or Atlas)
+- npm or yarn
