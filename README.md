@@ -12,10 +12,10 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 
 **🚀 Features**
 
-👑 Admin Features :
+*👑 Admin Features :*
 
-Dashboard Overview - Comprehensive site analytics and performance metrics
-User Management - Manage all users, roles, and permissions
-Site Management - Control platform settings and configurations
-Order Monitoring - Track all transactions across the platform
-Category Management - Organize and manage product categories
+- Dashboard Overview - Comprehensive site analytics and performance metrics
+- User Management - Manage all users, roles, and permissions
+- Site Management - Control platform settings and configurations
+- Order Monitoring - Track all transactions across the platform
+- Category Management - Organize and manage product categories
