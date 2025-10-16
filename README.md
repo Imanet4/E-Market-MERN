@@ -183,3 +183,7 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 IMANE TAIFOUR | KHAOULA BOUMAROUANI
 * GitHub : @Imanet4 | ...
 * Email : imanetaifour2@gmail.com | khawlaboumarwani@gmail.com
+
+
+##📄 License
+Distributed under the MIT License. See LICENSE for more information.
