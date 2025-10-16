@@ -36,7 +36,8 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 - Order History - View past purchases and order details
 - Profile Management - Update personal information and preferences
 
-**🛠️ Tech Stack :**
+**🛠️ Tech Stack **
+
 *Frontend:*
  - React.js
  - Context API for state management
