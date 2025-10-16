@@ -67,8 +67,13 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 | `index.js` - Entry point | |
 
 
+
 **🚀 Installation & Setup**
 *Prerequisites*
 - Node.js (v18 or higher)
 - MongoDB (local or Atlas)
 - npm or yarn
+
+## Backend Setup
+
+1. Navigate to backend directory:
