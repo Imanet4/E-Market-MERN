@@ -27,3 +27,12 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 - Product Creation - Rich product creation with image uploads
 - Order Management - Process and track customer orders
 - Sales Analytics - View sales reports and revenue metrics
+
+
+*👤 Buyer Features:*
+
+- Product Browsing - Search and filter products by categories
+- Shopping Cart - Add items and manage quantities
+- Order System - Place orders and track order status
+- Order History - View past purchases and order details
+- Profile Management - Update personal information and preferences
