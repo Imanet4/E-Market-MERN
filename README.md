@@ -89,3 +89,13 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 4. Start the backend server:
  - npm start
  - *Backend will run on http://localhost:5000*
+
+## Frontend Setup
+
+1. Navigate to frontend directory:
+   - cd frontend
+2. Install dependencies:
+   - npm install
+3. Start the frontend development server:
+   - npm start
+   - *Frontend will run on http://localhost:3000*
