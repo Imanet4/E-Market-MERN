@@ -125,6 +125,9 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 | Role | Dashboard Access | Product Management | Order Management | User Management |
 |------|------------------|--------------------|------------------|-----------------|
 |**Admin**| Full dashboard | View all Products | All orders | Full access |
+|**Seller**| Seller dashboard | Own products only | Own product orders | Limited |
+|**Buyer**| Order history only | None | Own orders only | Self-only |
+
 
  ## 🖼️ Application Screenshots
 
