@@ -25,7 +25,5 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 - Seller Dashboard - Sales analytics and performance insights
 - Inventory Management - Add, edit, and manage product listings
 - Product Creation - Rich product creation with image uploads
-
-Order Management - Process and track customer orders
-
-Sales Analytics - View sales reports and revenue metrics
+- Order Management - Process and track customer orders
+- Sales Analytics - View sales reports and revenue metrics
