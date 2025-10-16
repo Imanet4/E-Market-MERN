@@ -178,3 +178,8 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 | **User Management** | Manage system users and roles | ![AdminDashboard_User-Management](./images/AdminDashboard_User-Management.png) |
 | **Platform Analytics** | Analytics and reporting | ![AdminDashboard_Platform-Analytics](./images/AdminDashboard_Platform-Analytics.png) |
 | **System Settings** | Platform configuration | ![AdminDashboard_System-Settings](./images/AdminDashboard_System-Settings.png) |
+
+**👨‍💻 Developers**
+IMANE TAIFOUR | KHAOULA BOUMAROUANI
+* GitHub : @Imanet4 | ...
+* Email : imanetaifour2@gmail.com | khawlaboumarwani@gmail.com
