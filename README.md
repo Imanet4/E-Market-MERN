@@ -1,4 +1,4 @@
-E-MARKET-MERN - E-Commerce Marketplace Platform
+**E-MARKET-MERN - E-Commerce Marketplace Platform**
 
 
 ![MERN Stack](https://img.shields.io/badge/MERN-Full%2520Stack-green)
