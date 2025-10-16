@@ -88,4 +88,4 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
    * NODE_ENV=development
 4. Start the backend server:
  - npm start
-*Backend will run on http://localhost:5000*
+ - *Backend will run on http://localhost:5000*
