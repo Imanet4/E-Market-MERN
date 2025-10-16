@@ -51,28 +51,18 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
  - JWT Authentication
  - File upload handling
 
-**📁 Project Structure**
+## Project Structure
 
-E-MARKET-MERN/
-├── backend/
-│   ├── config/          # Database configuration and environment setup
-│   ├── controllers/     # Business logic for handling requests
-│   ├── locales/         # Internationalization files
-│   ├── middleware/      # Authentication and validation middleware
-│   ├── models/          # MongoDB schema definitions
-│   ├── routes/          # API endpoint definitions
-│   ├── uploads/         # File storage for product images
-│   ├── utils/           # Utility functions and helpers
-│   ├── .env             # Environment variables
-│   └── index.js         # Backend entry point
-└── frontend/
-    ├── public/          # Static assets
-    ├── src/
-    │   ├── components/  # Reusable React components
-    │   ├── contexts/    # React context for state management
-    │   ├── pages/       # Main page components for different views
-    │   ├── services/    # API service functions
-    │   ├── utils/       # Frontend utility functions
-    │   └── App.js       # Main React component
-    └── package.json
+| Backend (`/backend`) | Frontend (`/frontend`) |
+|---------------------|-----------------------|
+| `config/` - Database configuration | `public/` - Static assets |
+| `controllers/` - Business logic | `src/components/` - React components |
+| `locales/` - Internationalization | `src/contexts/` - State management |
+| `middleware/` - Auth & validation | `src/pages/` - Page components |
+| `models/` - MongoDB schemas | `src/services/` - API services |
+| `routes/` - API endpoints | `src/utils/` - Utility functions |
+| `uploads/` - File storage | `App.js` - Main component |
+| `utils/` - Helper functions | `package.json` - Dependencies |
+| `.env` - Environment variables | |
+| `index.js` - Entry point | |
 
