@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Badge, Alert, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Badge, Alert, Spinner, Toast } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { mockSouvenirBoxes, souvenirBoxCategories } from '../../utils/mockData';
+import { useCart } from '../../contexts/CartContext'; // Import the cart context
 
 const SouvenirBoxes = () => {
   const [boxes, setBoxes] = useState([]);
   const [filteredBoxes, setFilteredBoxes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [showToast, setShowToast] = useState(false);
+  const [toastBox, setToastBox] = useState(null);
 
-  // SVG Icons
+  const { addToCart, cartCount } = useCart(); // Use the cart context
+
+  // SVG Icons (keep all your existing icons)
   const PackageIcon = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <polyline points="20 12 20 22 4 22 4 12"></polyline>
@@ -57,6 +62,37 @@ const SouvenirBoxes = () => {
       <line x1="12" y1="8" x2="12.01" y2="8"></line>
     </svg>
   );
+
+  // Updated add to cart function that uses the CartContext
+  const handleAddToCart = (box) => {
+    if (box.stock === 0) {
+      return;
+    }
+
+    // Prepare the box data in the format expected by your CartContext
+    const cartItem = {
+      _id: box._id,
+      name: box.name,
+      price: box.price,
+      images: box.images || [],
+      cooperative: box.cooperative || { name: 'AtlasMarket' },
+      stock: box.stock,
+      type: 'souvenir-box',
+      description: box.description
+    };
+
+    // Use the CartContext's addToCart function
+    addToCart(cartItem);
+    
+    // Show toast notification
+    setToastBox(box);
+    setShowToast(true);
+    
+    // Auto hide toast after 3 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     // Simulate API call delay
@@ -122,6 +158,44 @@ const SouvenirBoxes = () => {
 
   return (
     <Container className="py-5" style={{ marginTop: '80px' }}>
+      {/* Add to Cart Toast */}
+      <Toast 
+        show={showToast} 
+        onClose={() => setShowToast(false)}
+        style={{
+          position: 'fixed',
+          top: '100px',
+          right: '20px',
+          zIndex: 1050,
+          minWidth: '300px'
+        }}
+      >
+        <Toast.Header>
+          <strong className="me-auto">🎉 Added to Cart!</strong>
+        </Toast.Header>
+        <Toast.Body>
+          {toastBox && (
+            <div className="d-flex align-items-center">
+              <div 
+                className="rounded me-3"
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  background: 'linear-gradient(135deg, #ed7418 0%, #3b82f6 100%)'
+                }}
+              ></div>
+              <div>
+                <strong>{toastBox.name}</strong>
+                <div className="text-muted">${toastBox.price}</div>
+              </div>
+            </div>
+          )}
+          <div className="mt-2">
+            <small>Cart now has {cartCount} items</small>
+          </div>
+        </Toast.Body>
+      </Toast>
+
       {/* Header Section */}
       <Row className="mb-5">
         <Col className="text-center">
@@ -311,6 +385,7 @@ const SouvenirBoxes = () => {
                       variant="primary" 
                       className="w-100"
                       disabled={box.stock === 0}
+                      onClick={() => handleAddToCart(box)}
                       style={{ 
                         backgroundColor: box.stock === 0 ? '#6c757d' : 'var(--primary)',
                         borderColor: box.stock === 0 ? '#6c757d' : 'var(--primary)',
@@ -318,7 +393,7 @@ const SouvenirBoxes = () => {
                         transform: 'translateY(0)'
                       }}
                       onMouseEnter={(e) => {
-                        if (!box.stock === 0) {
+                        if (box.stock > 0) {
                           e.target.style.transform = 'translateY(-2px)';
                           e.target.style.boxShadow = '0 4px 12px rgba(237, 116, 24, 0.3)';
                         }
