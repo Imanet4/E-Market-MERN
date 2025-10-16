@@ -37,17 +37,17 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 - Profile Management - Update personal information and preferences
 
 **🛠️ Tech Stack**
-    *Frontend:*
-      - React.js
-      - Context API for state management
-      - CSS3 with modern styling & bootstrap
-      - Axios for API calls
+*Frontend:*
+ - React.js
+ - Context API for state management
+ - CSS3 with modern styling & bootstrap
+ - Axios for API calls
 
-  *Backend:*
-      - Node.js
-      - Express.js
-      - MongoDB with Mongoose
-      - JWT Authentication
-      - File upload handling
+*Backend:*
+ - Node.js
+ - Express.js
+ - MongoDB with Mongoose
+ - JWT Authentication
+ - File upload handling
 
 
