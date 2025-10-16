@@ -106,7 +106,7 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 ### Core Pages
 | Page | Description | Screenshot |
 |------|-------------|------------|
-| **Home Page** | Main landing page of the application | ![HomePage](../images/HomePage.png) |
+| **Home Page** | Main landing page of the application | ![HomePage](./images/HomePage.png) |
 | **Products Page** | Browse all available products | ![ProductsPage](../images/ProductsPage.png) |
 | **Cooperatives Page** | View all cooperatives | ![CooperativesPage](../images/CooperativesPage.png) |
 | **Souvenir Boxes Page** | Special souvenir boxes section | ![SouvenirBoxesPage](../images/SouvenirBoxesPage.png) |
