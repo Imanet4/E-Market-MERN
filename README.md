@@ -181,7 +181,7 @@ A full-stack e-commerce marketplace platform built with the MERN stack, featurin
 
 **👨‍💻 Developers** 
 * IMANE TAIFOUR | KHAOULA BOUMAROUANI
-* GitHub : @Imanet4 | ...
+* GitHub : @Imanet4 | @KB120802
 * Email : imanetaifour2@gmail.com | khawlaboumarwani@gmail.com
 
 
